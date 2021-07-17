@@ -12,21 +12,41 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
   }
-
+  
   div:nth-child(2) {
     font-size: 22px;
     color: #fff;
     background-color: #b5c401;
-
-    margin: 2rem 7rem;
+    width: 144px;
+    height: 39px;
+    
+    margin: 2rem auto;
     padding: 0.5rem 0;
-
+    
     border-radius: 1.5rem;
     text-align: center;
+    
+    @media (max-width: 767px) {
+      font-size: 11px;
+      width: 67px;
+      height: 19.5px;
+      margin: 1rem auto;
+      text-align: center;
+    }
   }
-
+  
   p {
     text-transform: uppercase;
     font-size: 83px;
+    
+    @media (max-width: 767px) {
+      font-size: 41.5px;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 1.75rem;
+    font-size: 32.5px;
   }
 `;

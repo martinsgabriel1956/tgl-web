@@ -1,9 +1,16 @@
-import { Container } from './styles';
+import { Card } from "../../components/UI/Card";
+import { Logo } from "../../components/UI/Logo";
+
+import { Container } from "./styles";
 
 export function Login() {
   return (
     <Container>
-      <h1>Login</h1>
+      <Logo />
+      <section>
+        <h2>Authentication</h2>
+        <Card />
+      </section>
     </Container>
   );
-};
+}
