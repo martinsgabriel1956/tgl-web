@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { FiArrowRight } from "react-icons/fi";
-
 export const Container = styled.section`
   width: 352px;
   height: 337px;
@@ -38,9 +36,7 @@ export const Container = styled.section`
 
     &:nth-child(4) {
       color: #707070;
-
       margin-top: 3.5rem;
-
 
       @media (max-width: 767px) {
         padding-bottom: 1rem;
@@ -49,6 +45,4 @@ export const Container = styled.section`
   }
 `;
 
-export const Arrow = styled(FiArrowRight)`
-  font-size: 3rem;
-`;
+

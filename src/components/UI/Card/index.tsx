@@ -1,24 +1,17 @@
-import { Link } from "react-router-dom";
 
-import { Form } from "../../Form";
-import { Container, Arrow } from "./styles";
+import { ReactNode } from 'react';
 
-export function Card() {
+import { Container } from "./styles";
+
+interface CardProps {
+  children: ReactNode;
+}
+
+export function Card({ children }: CardProps) {
   return (
     <>
       <Container>
-        <Form />
-        <div>
-          <Link to="/reset_password">I forget my password</Link>
-        </div>
-        <Link to="/">
-          Log In
-          <Arrow />
-        </Link>
-        <Link to="/register">
-          Sign Up
-          <Arrow />
-        </Link>
+        {children}
       </Container>
     </>
   );
