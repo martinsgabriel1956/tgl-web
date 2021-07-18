@@ -5,6 +5,9 @@ export const Container = styled.form`
 `;
 
 export const Control = styled.div`
+  &:nth-child(1) > input {
+    margin-bottom: 1px;
+  }
   &:nth-child(2) > input {
     margin-bottom: 1.5rem;
   }
