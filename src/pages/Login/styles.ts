@@ -13,13 +13,13 @@ export const Container = styled.div`
     color: #707070;
     text-align: center;
     padding: 0 1.25rem 1.25rem;
-    
+
     @media (max-width: 767px) {
       font-size: 25px;
       padding: 1rem 0 1.25rem;
     }
   }
-  
+
   @media (max-width: 767px) {
     grid-template-columns: repeat(1, 1fr);
     justify-content: center;

@@ -3,7 +3,7 @@ import {
   Control,
 } from "./styles";
 
-export function Form() {
+export function LoginForm() {
   return (
     <Container>
       <Control>
@@ -12,7 +12,6 @@ export function Form() {
       <Control>
         <input type="text" placeholder="Password" />
       </Control>
-      
     </Container>
   );
 }

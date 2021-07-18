@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 
 import { Card } from "../../components/UI/Card";
 import { Logo } from "../../components/UI/Logo";
-import { Form } from "../../components/Form";
+import { LoginForm } from "../../components/Form/LoginForm";
 
 import { Container, Arrow } from "./styles";
+
+import { ButtonLink } from "../../components/UI/ButtonLink";
 
 export function Login() {
   return (
@@ -13,19 +15,19 @@ export function Login() {
       <section>
         <h2>Authentication</h2>
         <Card>
-          <Form />
+          <LoginForm />
           <div>
-            <Link to="/reset_password">I forget my password</Link>
+            <Link to={"/reset_password"}>I forget my password</Link>
           </div>
-          <Link to="/">
+          <ButtonLink className="primary" to="/">
             Log In
             <Arrow />
-          </Link>
-          <Link to="/register">
-            Sign Up
-            <Arrow />
-          </Link>
+          </ButtonLink>
         </Card>
+        <ButtonLink to="/register">
+          Sign Up
+          <Arrow />
+        </ButtonLink>
       </section>
     </Container>
   );

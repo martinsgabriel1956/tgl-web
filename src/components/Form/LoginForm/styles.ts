@@ -24,8 +24,6 @@ export const Control = styled.div`
   }
 `;
 
-
-
 export const ResetPassword = styled.div``;
 
 

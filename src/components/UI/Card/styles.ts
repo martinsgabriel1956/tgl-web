@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.section`
   width: 352px;
-  height: 337px;
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid #fff;
@@ -20,7 +19,6 @@ export const Container = styled.section`
     cursor: pointer;
     padding-top: 1rem;
     text-decoration: none;
-    color: #b5c401;
 
     &:nth-child(1) {
       padding-top: 0.5rem;
@@ -33,16 +31,5 @@ export const Container = styled.section`
       justify-content: flex-end;
       margin-right: 1.5rem;
     }
-
-    &:nth-child(4) {
-      color: #707070;
-      margin-top: 3.5rem;
-
-      @media (max-width: 767px) {
-        padding-bottom: 1rem;
-      }
-    }
   }
 `;
-
-
