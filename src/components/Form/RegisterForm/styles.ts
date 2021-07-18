@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+import { FiArrowRight } from "react-icons/fi";
+
+export const Container = styled.form``;
 
 export const Control = styled.div`
   &:nth-child(1) > input,
@@ -20,4 +22,8 @@ export const Control = styled.div`
       font-style: italic;
     }
   }
+`;
+
+export const Arrow = styled(FiArrowRight)`
+  font-size: 3rem;
 `;

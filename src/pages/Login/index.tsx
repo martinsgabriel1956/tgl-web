@@ -6,7 +6,7 @@ import { LoginForm } from "../../components/Form/LoginForm";
 
 import { Container, Arrow } from "./styles";
 
-import { ButtonLink } from "../../components/UI/ButtonLink";
+import { ButtonGray } from "../../components/UI/ButtonGray";
 
 export function Login() {
   return (
@@ -16,18 +16,11 @@ export function Login() {
         <h2>Authentication</h2>
         <Card>
           <LoginForm />
-          <div>
-            <Link to={"/reset_password"}>I forget my password</Link>
-          </div>
-          <ButtonLink className="primary" to="/">
-            Log In
-            <Arrow />
-          </ButtonLink>
         </Card>
-        <ButtonLink to="/register">
+        <ButtonGray to="/register">
           Sign Up
           <Arrow />
-        </ButtonLink>
+        </ButtonGray>
       </section>
     </Container>
   );

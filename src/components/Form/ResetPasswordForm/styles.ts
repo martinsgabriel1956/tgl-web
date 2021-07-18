@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { FiArrowRight } from "react-icons/fi";
+
 export const Container = styled.div`
 
 `;
@@ -22,4 +24,8 @@ export const Control = styled.div`
       font-style: italic;
     }
   }
+`;
+
+export const Arrow = styled(FiArrowRight)`
+  font-size: 3rem;
 `;

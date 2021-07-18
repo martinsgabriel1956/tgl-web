@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FiArrowRight } from "react-icons/fi";
 
 export const Container = styled.form`
  
@@ -27,6 +28,7 @@ export const Control = styled.div`
   }
 `;
 
-export const ResetPassword = styled.div``;
-
+export const Arrow = styled(FiArrowRight)`
+  font-size: 3rem;
+`;
 

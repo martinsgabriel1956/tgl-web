@@ -9,10 +9,9 @@ type HTMLProps = {
 
 type ButtonProps = {
   children: ReactNode;
-  to: LinkProps["to"] | string;
   className?: HTMLAttributes<HTMLProps> | string;
 };
 
-export const ButtonLink: FC<ButtonProps> = (props) => {
-  return <Container to={props.to}>{props.children}</Container>;
+export const ButtonGreen: FC<ButtonProps> = (props) => {
+  return <Container >{props.children}</Container>;
 };

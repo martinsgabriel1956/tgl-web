@@ -12,8 +12,8 @@ export function Routes() {
       <Switch>
         <Route path="/" exact component={Dashboard} />
         <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
         <Route path="/reset_password" component={ResetPassword} />
+        <Route path="/register" component={Register} />
         <Route path="/new_bet" component={NewBet} />
       </Switch>
     </>

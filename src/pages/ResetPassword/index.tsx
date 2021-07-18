@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 
-import { Container, Arrow } from "./styles";
+import { Container } from "./styles";
 
 import { Logo } from "../../components/UI/Logo";
 import { Card } from "../../components/UI/Card";
 import { ResetPasswordForm } from "../../components/Form/ResetPasswordForm";
-import { ButtonLink } from "../../components/UI/ButtonLink";
+import { ButtonGray } from "../../components/UI/ButtonGray";
 
 export function ResetPassword() {
   return (
@@ -16,15 +15,11 @@ export function ResetPassword() {
         <h2>Reset Password</h2>
         <Card>
           <ResetPasswordForm />
-          <ButtonLink to="#">
-            Send link
-            <Arrow />
-          </ButtonLink>
         </Card>
-        <ButtonLink to="/login">
+        <ButtonGray to="/login">
           <FiArrowLeft />
           Back
-        </ButtonLink>
+        </ButtonGray>
       </section>
     </Container>
   );
