@@ -18,7 +18,7 @@ export const Container = styled(Link).attrs((props) => {
   padding-top: 1rem;
   text-decoration: none;
   color: ${props => props.className === "primary" ? '#b5c401' : '#707070'};
-  margin: 0 0 2.5rem;
+  margin: 1rem 0 2rem;
 
   &.gray {
     @media (max-width: 767px) {
