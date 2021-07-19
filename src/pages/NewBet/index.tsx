@@ -1,6 +1,8 @@
 import { Footer } from "../../components/UI/Footer";
 import { Header } from "../../components/UI/Header";
 
+import { Cart } from "../../components/Cart";
+
 import {
   Container,
   Games,
@@ -42,7 +44,7 @@ export function NewBet() {
           </ButtonContainer>
         </section>
         <section>
-          <div>dfjkhvfdjfcdks</div>
+          <Cart />
         </section>
       </Container>
       <Footer />
