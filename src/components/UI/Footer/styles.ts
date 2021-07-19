@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.footer`
   background-color: transparent;
 
-  position: sticky;
+  position: fixed;
   padding: 1.5rem;
 
   width: 100%;
@@ -19,5 +19,8 @@ export const Container = styled.footer`
     color: #707070;
   }
 
+  @media (max-width: 767px) {
+    position: sticky;
+  }
 
 `;
