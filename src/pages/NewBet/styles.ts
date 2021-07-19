@@ -25,9 +25,18 @@ export const Container = styled.div`
     margin-top: 2rem;
     font-size: 17px;
   }
+
+  span {
+    color: #868686;
+    font-size: 17px;
+    width: 100%;
+
+  }
 `;
 
-export const Games = styled.div``;
+export const Games = styled.div`
+  padding-top: 1rem;
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -82,4 +91,11 @@ export const CartImg = styled(FiShoppingCart)`
   height: 20px;
 
   margin-right: 1rem;
+`;
+
+export const GameNumbers = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
 `;
