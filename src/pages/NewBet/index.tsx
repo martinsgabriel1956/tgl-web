@@ -73,7 +73,7 @@ export function NewBet() {
       <Container>
         <section>
           <h2>
-            New Bet <span>For</span>
+            New Bet <span>For {type}</span>
           </h2>
 
           <p>Choose a game</p>

@@ -14,8 +14,9 @@ export const Container = styled.div`
     font-size: 24px;
     text-transform: uppercase;
     color: #707070;
-
+    
     span {
+      font-size: 24px;
       font-weight: 200;
     }
   }
@@ -71,7 +72,7 @@ export const AddToCartButton = styled.button`
   align-items: center;
   justify-content: center;
   
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 2.5rem;
   background-color: #27c383;
   border: 2px solid #27c383;
   color: #ffffff;
@@ -87,8 +88,8 @@ export const AddToCartButton = styled.button`
 `;
 
 export const CartImg = styled(FiShoppingCart)`
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 
   margin-right: 1rem;
 `;
