@@ -11,6 +11,7 @@ export const Container = styled.button`
   margin-right: 1.25rem;
   font-size: 12px;
   color: ${(props) => props.color};
+  
 
   &:hover {
     background-color: ${props => props.color};

@@ -60,7 +60,7 @@ export function NewBet() {
           key={i} 
           value={i}
         >
-          {i}
+          {i < 10 ? `0${i}` : i}
         </NumbersGame>
       );
     }

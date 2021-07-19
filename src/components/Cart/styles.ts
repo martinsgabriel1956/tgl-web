@@ -16,7 +16,7 @@ export const Container = styled.div`
     text-transform: uppercase;
     font-style: normal;
     font-size: 24px;
-    font-weight: 200;
+    font-weight: 400;
 
     strong {
       font-style: italic;

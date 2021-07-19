@@ -94,6 +94,7 @@ export const CartImg = styled(FiShoppingCart)`
 `;
 
 export const GameNumbers = styled.div`
+  margin-top: 1rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
