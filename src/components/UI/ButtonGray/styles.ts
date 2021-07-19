@@ -21,4 +21,8 @@ export const Container = styled(Link).attrs(props => {
   background-color: transparent;
   color: #707070;
   margin: 1rem auto 2rem;
+
+  @media (max-width: 767px) {
+    margin: 1rem auto 6rem;
+  }
 `;

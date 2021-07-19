@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.footer`
   background-color: transparent;
 
-  position: fixed;
+  position: sticky;
   padding: 1.5rem;
 
   width: 100%;
@@ -18,4 +18,6 @@ export const Container = styled.footer`
     font-size: 15px;
     color: #707070;
   }
+
+
 `;

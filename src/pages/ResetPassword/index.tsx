@@ -6,6 +6,7 @@ import { Logo } from "../../components/UI/Logo";
 import { Card } from "../../components/UI/Card";
 import { ResetPasswordForm } from "../../components/Form/ResetPasswordForm";
 import { ButtonGray } from "../../components/UI/ButtonGray";
+import { Footer } from "../../components/UI/Footer";
 
 export function ResetPassword() {
   return (
@@ -21,6 +22,7 @@ export function ResetPassword() {
           Back
         </ButtonGray>
       </section>
+      <Footer />
     </Container>
   );
 }
