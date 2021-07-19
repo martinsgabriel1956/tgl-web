@@ -42,8 +42,6 @@ export function NewBet() {
     api.get("/types").then((res) => setItems(res.data));
   }, []);
 
-  console.log(items);
-
   function handleGameSelect(index: number) {
     setDescription(items[index]["description"]);
     setRange(items[index]["range"]);
@@ -55,9 +53,9 @@ export function NewBet() {
 
     for (let i = 1; i <= range; i++) {
       cartArr.push(
-        <NumbersGame 
-          ref={numberButtonsRef} 
-          key={i} 
+        <NumbersGame
+          ref={numberButtonsRef}
+          key={i}
           value={i}
         >
           {i < 10 ? `0${i}` : i}
@@ -94,11 +92,7 @@ export function NewBet() {
 
           <span>{items && description}</span>
 
-          <GameNumbers>
-            {
-              items && gameButtons()
-            }
-          </GameNumbers>
+          <GameNumbers>{items && gameButtons()}</GameNumbers>
 
           <ButtonContainer>
             <div>
