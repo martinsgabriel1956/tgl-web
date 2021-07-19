@@ -29,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "json-server ./src/services/games.json -w -d 750 -p 3333"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +50,7 @@
   "devDependencies": {
     "@types/react-modal": "^3.12.1",
     "@types/react-router-dom": "^5.1.8",
-    "@types/styled-components": "^5.1.11"
+    "@types/styled-components": "^5.1.11",
+    "json-server": "^0.16.3"
   }
 }
