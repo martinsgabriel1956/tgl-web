@@ -31,27 +31,34 @@ export function RegisterForm(props: RegisterFormProps) {
     dispatch(authActions.register({ name, email, password }));
 
     if (!name || !email || !password) {
-      alert("preencha todos os campos");
+      toast.error("Preencha todos os campos");
       return;
     }
-    history.push("/login");
+    history.push("/dashboard");
   }
 
   return (
-    <Container onSubmit={handleSubmit}>
-      <Control>
-        <input type="text" placeholder="Nome" ref={nameInputRef} />
-      </Control>
-      <Control>
-        <input type="email" placeholder="Email" ref={emailInputRef} />
-      </Control>
-      <Control>
-        <input type="password" placeholder="Password" ref={passwordInputRef} />
-      </Control>
-      <ButtonGreen>
-        Register
-        <Arrow />
-      </ButtonGreen>
-    </Container>
+    <>
+      <Toaster />
+      <Container onSubmit={handleSubmit}>
+        <Control>
+          <input type="text" placeholder="Nome" ref={nameInputRef} />
+        </Control>
+        <Control>
+          <input type="email" placeholder="Email" ref={emailInputRef} />
+        </Control>
+        <Control>
+          <input
+            type="password"
+            placeholder="Password"
+            ref={passwordInputRef}
+          />
+        </Control>
+        <ButtonGreen>
+          Register
+          <Arrow />
+        </ButtonGreen>
+      </Container>
+    </>
   );
 }

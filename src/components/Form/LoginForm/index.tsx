@@ -1,8 +1,7 @@
 import { FormEvent, useRef } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
-
+import { Toaster } from "react-hot-toast";
 
 import { authActions } from "../../../store/auth";
 
@@ -32,13 +31,11 @@ export function LoginForm() {
     const password = passwordInputRef.current?.value;
 
     dispatch(authActions.login({ email, password }));
-
+    
     if (!isLoggedIn) {
-      toast.error("Email ou senha incorretos");
       return;
     }
     history.push("/dashboard");
-
   }
 
   return (

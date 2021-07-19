@@ -9,6 +9,10 @@ export const Control = styled.div`
   &:nth-child(2) > input {
     margin-bottom: 2px;
   }
+
+  &:nth-child(2) > input {
+    border-radius: 0;
+  }
   input {
     border-radius: 16px 16px 0 0;
     width: 100%;

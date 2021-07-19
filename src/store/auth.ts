@@ -29,11 +29,12 @@ export const authSlice = createSlice({
       const passwordVerified = localStorage.getItem("password") === password;
 
       if(email.trim() === '' || password.trim() === '') {
+        toast.error("Preencha todos os campos!")
         return;
       }
 
-      if (!emailVerified && passwordVerified) {
-        toast.error("Preencha todos os campos!")
+      if (!emailVerified && !passwordVerified) {
+        toast.error("Email ou senha incorretos");
         return;
       }
 
@@ -55,11 +56,13 @@ export const authSlice = createSlice({
       }
     },
 
-    logout(state, action) {
+    logout(state) {
       state.isLoggedIn = false;
+      
       localStorage.removeItem("email");
       localStorage.removeItem("password");
     },
+    
     validateEmail(state, action) {
       const email: string = action.payload.email;
 
