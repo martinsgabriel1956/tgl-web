@@ -1,17 +1,21 @@
-import { ReactNode, RefObject, MouseEventHandler } from 'react';
+import { ReactNode, MouseEventHandler } from 'react';
 
 import { Container } from './styles';
 
 interface NumbersGameProps {
   children: ReactNode;
-  ref: RefObject<HTMLButtonElement>
   onClick?: MouseEventHandler<HTMLButtonElement>;
-  value: number
+  value: string | number | readonly string[] | undefined;
+  color: string;
 }
 
 export function NumbersGame(props: NumbersGameProps) {
   return (
-    <Container>
+    <Container 
+      color={props.color}
+      value={props.value}
+      onClick={props.onClick}
+    >
       {props.children}
     </Container>
   );

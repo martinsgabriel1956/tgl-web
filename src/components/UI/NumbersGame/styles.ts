@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.button`
-    background: #ADC0C4;
+    background: ${props => props.color};
     color: white;
     width: 50px;
     height: 50px;

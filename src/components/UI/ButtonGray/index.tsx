@@ -1,4 +1,4 @@
-import { ReactNode, FC, HTMLAttributes } from "react";
+import { ReactNode, FC } from "react";
 
 import { Container } from "./styles";
 
