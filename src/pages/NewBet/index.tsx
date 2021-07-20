@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Footer } from "../../components/UI/Footer";
 import { Header } from "../../components/UI/Header";
 import { SelectGame } from "../../components/UI/SelectGame";
 import { NumbersGame } from "../../components/UI/NumbersGame";
 import { Cart } from "../../components/Cart";
+
+import { newBetActions } from "../../store/newbet";
 
 import { api } from "../../services/api";
 
@@ -28,15 +31,27 @@ type ItemTypes = {
   "min-cart-value": number;
 };
 
+type RootState = {
+  newBet: {
+    items: number[];
+    color: string;
+  };
+};
+
 let cartArr = [];
 
 export function NewBet() {
-  const numberButtonsRef = useRef<HTMLButtonElement>(null);
+  let myItems: number[] = useSelector((state: RootState) => state.newBet.items);
+
+  const dispatch = useDispatch();
 
   const [items, setItems] = useState([]);
   const [description, setDescription] = useState(null);
   const [range, setRange] = useState(0);
-  const [type, setType] = useState(null);
+  const [type, setType] = useState("");
+  const [color, setColor] = useState("");
+  const [maxNumber, setMaxNumber] = useState(0);
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
     api.get("/types").then((res) => setItems(res.data));
@@ -46,6 +61,33 @@ export function NewBet() {
     setDescription(items[index]["description"]);
     setRange(items[index]["range"]);
     setType(items[index]["type"]);
+    setMaxNumber(items[index]["maxNumber"]);
+    setPrice(items[index]["price"]);
+    setColor(items[index]["color"]);
+  }
+
+  function clearGame() {
+    console.log("Limpo");
+    return dispatch(newBetActions.clearGame());
+  }
+
+  function completeGame(maxNumber: number, range: number) {
+    if(cartArr.length === maxNumber){
+        clearGame();
+        return dispatch(newBetActions.completeGame({ maxNumber, range }))
+    }
+    return dispatch(newBetActions.completeGame({ maxNumber, range }))
+}
+
+  function handleSelectButton(
+    value: number,
+    maxNumber: number,
+    price: number,
+    gameName: string,
+    color: string
+  ) {
+    console.log(value, maxNumber, price, gameName, color);
+
   }
 
   function gameButtons() {
@@ -54,7 +96,8 @@ export function NewBet() {
     for (let i = 1; i <= range; i++) {
       cartArr.push(
         <NumbersGame
-          ref={numberButtonsRef}
+          color={myItems.find(item => item === i)  ? color : "#ADC0C4"}
+          onClick={() => handleSelectButton(i, maxNumber, price, type, color)}
           key={i}
           value={i}
         >
@@ -80,9 +123,10 @@ export function NewBet() {
             {items &&
               items.map((item: ItemTypes, index: number) => (
                 <SelectGame
-                  onClick={() => handleGameSelect(index)}
                   key={index}
-                  color={item.color}
+                  onClick={() => handleGameSelect(index)}
+                  background={type === item.type ? item.color : "transparent"}
+                  color={price !== item.price ? item.color : "#fff"}
                 >
                   {item.type}
                 </SelectGame>
@@ -96,9 +140,9 @@ export function NewBet() {
 
           <ButtonContainer>
             <div>
-              <ActionButton>Complete game</ActionButton>
+              <ActionButton onClick={() => completeGame(maxNumber, range)}>Complete game</ActionButton>
 
-              <ActionButton>Clear game</ActionButton>
+              <ActionButton onClick={clearGame}>Clear game</ActionButton>
             </div>
 
             <div>
