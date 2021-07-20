@@ -61,6 +61,7 @@ export const authSlice = createSlice({
       
       localStorage.removeItem("email");
       localStorage.removeItem("password");
+      localStorage.removeItem("name");
     },
     
     validateEmail(state, action) {

@@ -39,7 +39,7 @@ export function Routes() {
       <Switch>
         {isLoggedIn && (
           <>
-            <Route path="/" exact>
+            <Route path="/">
               <Redirect to="/dashboard" />
             </Route>
             <Route path="/dashboard" component={Dashboard} />
