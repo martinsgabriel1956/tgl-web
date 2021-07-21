@@ -34,7 +34,8 @@ export function RegisterForm(props: RegisterFormProps) {
       toast.error("Preencha todos os campos");
       return;
     }
-    history.push("/dashboard");
+    
+    history.push("/new_bet");
   }
 
   return (

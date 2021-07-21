@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-
 type AuthProps = {
   users: {}[];
   isLoggedIn: boolean;
@@ -48,7 +47,7 @@ export const authSlice = createSlice({
       state.users.push({ email, password, name });
 
       if (email.trim().length > 0 && password.trim().length > 0) {
-        localStorage.setItem("name", name);
+
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
 
@@ -68,9 +67,10 @@ export const authSlice = createSlice({
       const email: string = action.payload.email;
 
       if (email.trim().length > 0 && email === localStorage.getItem("email")) {
-        state.isLoggedIn = true
+        state.isLoggedIn = true;
+        toast('Senha redefinida!')
       } else {
-        alert('Digite o email cadastrado!');
+        toast('Digite o email cadastrado!');
       }
     },
   },

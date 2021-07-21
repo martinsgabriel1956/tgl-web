@@ -19,12 +19,29 @@ export const RecentGames = styled.section`
       text-transform: uppercase;
       color: #707070;
       margin-right: 3.5rem;
-    }
 
+      @media(max-width: 767px) {
+        font-size: 18px;
+        margin: 0;
+      }
+    }
+    
     span {
       color: #868686;
       font-size: 17px;
     }
+    
+    @media(max-width: 767px) {
+      flex-direction: column;
+      margin-bottom:  1rem;
+      padding-left: 0;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
   }
 `;
 
@@ -40,6 +57,11 @@ export const NewBet = styled(Link)`
   font-weight: bold;
 
   padding-right: 10rem;
+
+  @media (max-width: 767px) {
+    text-align: center;
+    padding: 0;
+  }
 `;
 
 export const Arrow = styled(FiArrowRight)`
