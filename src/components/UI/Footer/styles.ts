@@ -20,7 +20,7 @@ export const Container = styled.footer`
   }
 
   @media (max-width: 767px) {
-    position: sticky;
+  
   }
 
 `;

@@ -1,5 +1,4 @@
 import { ReactNode, FC, HTMLAttributes } from "react";
-import { LinkProps } from "react-router-dom";
 
 import { Container } from "./styles";
 
