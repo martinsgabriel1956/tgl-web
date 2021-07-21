@@ -48,6 +48,10 @@ export function Cart() {
     (state: RootState) => state.cart.totalPrice
   );
 
+  function deleteGame(id: string, price: number) {
+    dispatch(cartActions.deleteGame({ id, price }));
+  }
+
   return (
     <div>
       <Toaster />
@@ -56,10 +60,10 @@ export function Cart() {
   
           <GameContainer >
             {cartItem.length > 0 &&
-              cartItem.map(({ items, type, price, color }) => (
+              cartItem.map(({ items, type, price, color, id }) => (
                 <Game>
                   <DeleteGameContainer color={color}>
-                    <DeleteGame >
+                    <DeleteGame onClick={() => deleteGame(id, price)} >
                       <Trash />
                     </DeleteGame>
                   </DeleteGameContainer>

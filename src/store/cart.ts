@@ -48,6 +48,12 @@ export const cartSlice = createSlice({
       });
     },
     deleteGame(state, action) {
+      const id = action.payload.id;
+      const price = action.payload.price;
+
+      state.totalPrice -= price;
+
+      state.cartItem = state.cartItem.filter(item => item.id !== id)
     }
   }
 });
