@@ -14,11 +14,20 @@ export const Container = styled.header`
     font-weight: 600;
     text-decoration: none;
     padding-right: 4rem;
+
+    @media (max-width: 900px) {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    justify-content: space-between;
   }
 `;
 
 export const Logo = styled.nav`
   padding-left: 6rem;
+  margin-right: 4rem;
   color: #707070;
   font-size: 1.75rem;
 
@@ -27,17 +36,25 @@ export const Logo = styled.nav`
   &:after {
     content: "";
     position: absolute;
-
+    
     background-color: #b5c401;
-    top: 52px;
+    top: 42px;
     left: 82px;
-
+    
     width: 60%;
     height: 18%;
-
+    
     border-radius: 2rem;
-  }
 
+    @media (max-width: 767px) {
+      left: -4px;
+      padding: 0 1.25rem;
+    
+      width: 60%;
+      height: 18%;
+    }
+  }
+  
   a {
     padding: 0 2rem;
   }
@@ -47,6 +64,17 @@ export const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: row nowrap;
+
+  @media (max-width: 900px) {
+    flex-flow: column nowrap;
+    font-size: 17px;
+  }
+`;
+
+export const LogoContainer = styled.nav`
+  display: flex;
+  align-items: center;
 `;
 
 export const LogoutButton = styled.button`
@@ -62,9 +90,18 @@ export const LogoutButton = styled.button`
   cursor: pointer;
   font-style: italic;
   padding-right: 6rem;
+
+  @media (max-width: 900px) {
+    padding: 0;
+    font-size: 17px;
+  }
 `;
 
 export const Arrow = styled(FiArrowRight)`
   margin-left: 0.5rem;
   font-size: 25px;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
