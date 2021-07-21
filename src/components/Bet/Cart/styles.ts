@@ -55,6 +55,11 @@ export const SaveButton = styled.button`
   font-size: 35px;
   cursor: pointer;
   font-style: italic;
+
+  &:disabled {
+    cursor: no-drop;
+    opacity: 0.5;
+  }
 `;
 
 export const Arrow = styled(FiArrowRight)``;
