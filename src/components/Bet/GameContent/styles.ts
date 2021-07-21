@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart } from "react-icons/fi";
 
 export const Container = styled.div`
   h2 {
@@ -70,7 +70,7 @@ export const AddToCartButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   padding: 0.75rem 2.5rem;
   background-color: #27c383;
   border: 2px solid #27c383;
@@ -78,11 +78,16 @@ export const AddToCartButton = styled.button`
   border-radius: 0.45rem;
   font-weight: bold;
   cursor: pointer;
-  
+
   &:hover {
     background-color: transparent;
     color: #27c383;
     transition: all 0.5s;
+  }
+
+  &:disabled {
+    cursor: no-drop;
+    opacity: 0.5;
   }
 `;
 

@@ -78,9 +78,10 @@ export function GameContent() {
     maxNumber: number
   ) {
     if (numbersGame.length !== maxNumber) {
-      alert("Errou");
+      toast.error("Selecione todos os números");
+      return;
     }
-
+    
     dispatch(cartActions.receiveGame({ numbersGame, price, type, color }));
     clearGame();
   }
@@ -166,6 +167,7 @@ export function GameContent() {
 
           <div>
             <AddToCartButton
+              disabled={gameNumber.length <= 0}
               onClick={() =>
                 onAddToCart(gameNumber, price, type, color, maxNumber)
               }
