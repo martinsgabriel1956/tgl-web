@@ -6,17 +6,25 @@ export const Container = styled.div`
 
   width: 317px;
   height: auto;
-  padding: 2rem;
+  padding: 1.5rem 1.25rem 2rem;
   border: 1px solid #e2e2e2;
   border-bottom: none;
   border-radius: 8px 8px 0 0;
   background-color: #fff;
 
+  h2 {
+    font-size: 24px;
+    color: #707070;
+    text-transform: uppercase;
+    padding-bottom: 1.75rem;
+  }
+
   p {
     text-transform: uppercase;
     font-style: normal;
     font-size: 24px;
-    font-weight: 400;
+    color: #707070;
+    font-weight: 300;
 
     strong {
       font-style: italic;
@@ -50,3 +58,24 @@ export const SaveButton = styled.button`
 `;
 
 export const Arrow = styled(FiArrowRight)``;
+
+export const GameContainer = styled.div`
+  padding-bottom: 2rem;
+`;
+
+export const DeleteGameContainer = styled.div`
+
+`;
+
+export const DeleteGame = styled.button`
+
+`;
+
+export const GameName = styled.span`
+
+`;
+
+export const EmptyCart = styled.span`
+  display: flex;
+  color: #707070;
+`;
