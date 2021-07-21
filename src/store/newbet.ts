@@ -16,21 +16,31 @@ export const newBetSlice = createSlice({
   name: "NewBet",
   initialState,
   reducers: {
-    addToCart(state, action) {},
+    addToCart(state, action) {
+      const newNumber: number = action.payload.value;
+      const maxNumber: number = action.payload.maxNumber;
+      const gameNumbers = state.items;
+
+      const existingNumber = gameNumbers.find(item => item === newNumber);
+      const almostAddNumberInCart = gameNumbers.length < maxNumber
+
+      if(!existingNumber && almostAddNumberInCart) gameNumbers.push(newNumber);
+      if(existingNumber) gameNumbers.splice(gameNumbers.indexOf(newNumber), 1);
+      
+    },
     completeGame(state, action) {
+      const gameNumbers = state.items;
+
       const maxNumber: number = action.payload.maxNumber;
       const range: number = action.payload.range;
 
-      while (state.items.length < maxNumber) {
-        let newItem = Math.ceil(Math.random() * (range - 1) + 1);
-        const match = state.items.find((item) => item === newItem);
+      while (gameNumbers.length < maxNumber) {
+        let newItem = Math.ceil(Math.random() * range + 1);
 
-        if (!match) {
-          state.items.push(newItem);
-        }
+        const matchNumber = gameNumbers.find((item) => item === newItem);
+
+        if (!matchNumber) gameNumbers.push(newItem);
       }
-      
-      console.log(state.items.map((element) => element));
     },
     clearGame(state) {
       state.items = [];
