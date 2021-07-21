@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FiArrowRight } from "react-icons/fi";
+import { FiTrash2, FiArrowRight } from "react-icons/fi";
 
 export const Container = styled.div`
   margin-top: 2.5rem;
@@ -61,21 +61,74 @@ export const Arrow = styled(FiArrowRight)``;
 
 export const GameContainer = styled.div`
   padding-bottom: 2rem;
+
 `;
 
+export const Game = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
+  
+`;
 export const DeleteGameContainer = styled.div`
+  position: relative;
+  margin-right: 1.25rem;
 
+  &:after {
+    content: "";
+    position: absolute;
+    background-color: ${props => props.color};
+    top: -18px;
+    width: 6px;
+    height: 74px;
+    border-radius: 3px;
+    margin: 0 .25rem;
+  }
 `;
 
 export const DeleteGame = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  opacity: 1;
 
+  &:hover {
+    opacity: 0.75;
+  }
 `;
 
-export const GameName = styled.span`
-
+export const Trash = styled(FiTrash2)`
+  font-size: 30px;
+  color: #707070;
 `;
 
 export const EmptyCart = styled.span`
   display: flex;
   color: #707070;
+`;
+
+export const GameNumbers = styled.span`
+  display: block;
+  color: #707070;
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+
+  }
+`;
+
+export const GameType = styled.span`
+  color: ${(props) => props.color};
+  font-size: 16px;
+  font-weight: bold;
+`;
+
+export const GamePrice = styled.span`
+  font-size: 16px;
+  margin-left: .5rem;
+  color: #868686;
 `;

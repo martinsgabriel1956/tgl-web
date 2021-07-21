@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import { FiTrash2, FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 
 import {
   Container,
@@ -9,9 +9,13 @@ import {
   Arrow,
   DeleteGameContainer,
   DeleteGame,
-  GameName,
   GameContainer,
-  EmptyCart
+  EmptyCart,
+  Trash,
+  GameNumbers,
+  GameType,
+  GamePrice,
+  Game
 } from "./styles";
 
 import { cartActions } from "../../../store/cart";
@@ -49,38 +53,36 @@ export function Cart() {
       <Toaster />
       <Container>
         <h2>Cart</h2>
-
-        <GameContainer>
-          {cartItem.length > 1 &&
-            cartItem.map((item) => (
-              <>
-                <DeleteGameContainer>
-                  <DeleteGame>
-                    <FiTrash2 />
-                  </DeleteGame>
-                  <FiTrash2 />
-                </DeleteGameContainer>
-                <section>
-                  <span>{item.items.join(", ")}</span>
-                  <div>
-                    <GameName>{item.type}</GameName>
-                    <span>R${item.price.toFixed(2).replace(".", ",")}</span>
-                  </div>
-                </section>
-              </>
-            ))}
-
-          {cartItem.length < 1 && (
-            <EmptyCart>
-              <FiShoppingCart />
-              Carrinho vázio
-            </EmptyCart>
-          )}
-        </GameContainer>
+  
+          <GameContainer >
+            {cartItem.length > 0 &&
+              cartItem.map(({ items, type, price, color }) => (
+                <Game>
+                  <DeleteGameContainer color={color}>
+                    <DeleteGame >
+                      <Trash />
+                    </DeleteGame>
+                  </DeleteGameContainer>
+                  <section>
+                    <GameNumbers>{items.join(", ")}</GameNumbers>
+                    <div>
+                      <GameType color={color}>{type}:</GameType>
+                      <GamePrice>R${price.toFixed(2).replace(".", ",")}</GamePrice>
+                    </div>
+                  </section>
+                </Game>
+              ))}
+  
+            {cartItem.length < 1 && (
+              <EmptyCart>
+                <FiShoppingCart />
+                Carrinho vázio
+              </EmptyCart>
+            )}
+          </GameContainer>
 
         <p>
-          <strong>Cart</strong> Total:{" "}
-          {totalPrice > 1 && "R$" + totalPrice.toFixed(2).replace(".", ",")}
+          <strong>Cart</strong> Total: {totalPrice > 0 && "R$" + totalPrice.toFixed(2).replace(".", ",")}
         </p>
       </Container>
       <SaveContainer>
