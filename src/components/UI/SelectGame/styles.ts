@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  border: 3px solid ${(props) => props.color};
+  border: 3px solid ${(props) => props.border};
   border-radius: 20px;
   background-color: ${props => props.background};
   cursor: pointer;
@@ -13,6 +13,7 @@ export const Container = styled.button`
   color: ${(props) => props.color};
 
   @media (max-width: 767px) {
+    margin-top: 1rem;
     padding: .40rem 1.25rem;
   }
 `;

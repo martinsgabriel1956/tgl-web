@@ -13,4 +13,11 @@ export const Container = styled.button`
 
     cursor: pointer;
     border: none;
+
+    @media (max-width: 767px) {
+        width: 42px;
+        height: 42px;
+
+        font-size: 18px;
+    }
 `;
