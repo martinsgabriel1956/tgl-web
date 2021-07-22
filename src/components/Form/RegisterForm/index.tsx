@@ -35,7 +35,7 @@ export function RegisterForm(props: RegisterFormProps) {
       return;
     }
     
-    history.push("/new_bet");
+    history.push("/login");
   }
 
   return (
