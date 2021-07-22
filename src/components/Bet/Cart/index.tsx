@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { FiShoppingCart } from "react-icons/fi";
 
@@ -21,6 +21,7 @@ import {
 
 import { cartActions } from "../../../store/cart";
 import { gamesActions } from "../../../store/games";
+import { FormEvent } from "react";
 
 type RootState = {
   cart: {
@@ -56,24 +57,34 @@ export function Cart() {
   }
 
   function saveGame(game: {}[]) {
-    if(totalPrice < 5) toast.error('O valor mínimo para salvar um jogo é de 30 reais!');
+    if (totalPrice < 5)
+      toast.error("O valor mínimo para salvar um jogo é de 30 reais!");
 
-    dispatch(gamesActions.gamesDataFromCart(game));
+    dispatch(gamesActions.gamesDataFromCart({ game }));
     dispatch(cartActions.clearCart());
 
-    toast.success('Jogo salvo com sucesso!');
+    toast.success("Jogo salvo com sucesso!");
+    
+    setTimeout(() => {
+      history.push("/dashboard");
+    }, 2000);
+  }
+
+  function handleSaveGame(e: FormEvent) {
+    e.preventDefault();
+    saveGame(cartItem);
   }
 
   return (
     <div>
       <Toaster />
-      <Container>
+      <Container onSubmit={handleSaveGame}>
         <h2>Cart</h2>
 
         <GameContainer>
           {cartItem.length > 0 &&
             cartItem.map(({ items, type, price, color, id }) => (
-              <Game key={id} >
+              <Game key={id}>
                 <DeleteGameContainer color={color}>
                   <DeleteGame onClick={() => deleteGame(id, price)}>
                     <Trash />

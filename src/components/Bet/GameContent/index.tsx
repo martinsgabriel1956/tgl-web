@@ -77,6 +77,7 @@ export function GameContent() {
     color: string,
     maxNumber: number
   ) {
+
     if (numbersGame.length !== maxNumber) {
       toast.error("Selecione todos os números");
       return;
@@ -126,7 +127,12 @@ export function GameContent() {
     return cartArr;
   }
   useEffect(() => {
-    if (items.length) handleGameSelect(0);
+    const awaitGame = () => {
+      if (items.length) handleGameSelect(0);
+    }
+    return () => {
+      awaitGame();
+    }
   }, []);
 
   return (
@@ -146,6 +152,7 @@ export function GameContent() {
                 key={index}
                 onClick={() => handleGameSelect(index)}
                 background={type === item.type ? item.color : "transparent"}
+                border={item.color}
                 color={price !== item.price ? item.color : "#fff"}
               >
                 {item.type}

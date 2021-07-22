@@ -75,6 +75,11 @@ export const ButtonContainer = styled.div`
   div:nth-child(1) button:nth-child(1) {
     margin-right: 1.5rem;
   }
+
+  @media (max-width: 767px) {
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 export const ActionButton = styled.button`
@@ -120,6 +125,10 @@ export const AddToCartButton = styled.button`
   &:disabled {
     cursor: no-drop;
     opacity: 0.5;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 1rem;
   }
 `;
 

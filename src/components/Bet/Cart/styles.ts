@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FiTrash2, FiArrowRight } from "react-icons/fi";
 
-export const Container = styled.div`
+export const Container = styled.form`
   margin-top: 2.5rem;
 
   width: 317px;
@@ -30,6 +30,11 @@ export const Container = styled.div`
       font-style: italic;
     }
   }
+
+  @media (max-width: 767px) {
+    width: 320px;
+    margin: 0 auto;
+  }
 `;
 
 export const SaveContainer = styled.div`
@@ -40,6 +45,11 @@ export const SaveContainer = styled.div`
   border: 1px solid #e2e2e2;
   border-radius: 0 0 8px 8px;
   text-align: center;
+
+  @media (max-width: 767px) {
+    width: 320px;
+    margin: 0 auto;
+  }
 `;
 
 export const SaveButton = styled.button`
@@ -62,7 +72,9 @@ export const SaveButton = styled.button`
   }
 `;
 
-export const Arrow = styled(FiArrowRight)``;
+export const Arrow = styled(FiArrowRight)`
+  margin-left: .25rem;
+`;
 
 export const GameContainer = styled.div`
   padding-bottom: 2rem;
