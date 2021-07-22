@@ -45,7 +45,9 @@ export const RecentGames = styled.section`
   }
 `;
 
-export const Games = styled.div``;
+export const Games = styled.div`
+
+`;
 
 export const NewBet = styled(Link)`
   display: flex;
@@ -67,4 +69,11 @@ export const NewBet = styled(Link)`
 export const Arrow = styled(FiArrowRight)`
   margin-left: 0.35rem;
   font-size: 25px;
+`;
+
+export const LatestGames = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 3rem;
 `;

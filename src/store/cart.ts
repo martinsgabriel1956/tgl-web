@@ -23,19 +23,15 @@ export const cartSlice = createSlice({
   reducers: {
     receiveGame(state, action) {
       const gameNumbers: number[] = action.payload.numbersGame;
-      console.log(gameNumbers);
       const price: number = action.payload.price;
-      console.log(price);
       const name: string = action.payload.type;
-      console.log(name);
       const color: string = action.payload.color;
-      console.log(color);
 
       let id = Math.random().toString();
       let date = new Date();
       let dateFormatted = `${date.getDate()} /0 ${date.getMonth() + 1} / ${date.getFullYear()}}`;
 
-      const totalPrice = state.totalPrice += price;
+      state.totalPrice += price;
       const gamesCart = state.cartItem;
 
       gamesCart.push({

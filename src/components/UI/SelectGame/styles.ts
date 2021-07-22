@@ -11,4 +11,8 @@ export const Container = styled.button`
   margin-right: 1.25rem;
   font-size: 12px;
   color: ${(props) => props.color};
+
+  @media (max-width: 767px) {
+    padding: .40rem 1.25rem;
+  }
 `;

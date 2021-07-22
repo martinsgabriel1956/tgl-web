@@ -156,10 +156,12 @@ export function GameContent() {
         <span>{items && description}</span>
 
         <GameNumbers>{items && gameButtons()}</GameNumbers>
-
+        
         <ButtonContainer>
           <div>
-            <ActionButton onClick={() => completeGame(maxNumber, range)}>
+            <ActionButton 
+              onClick={() => completeGame(maxNumber, range)}
+            >
               Complete game
             </ActionButton>
             <ActionButton onClick={clearGame}>Clear game</ActionButton>

@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type ItemsType = {
   cartItem: {}[],
+  cartItemFiltered: {}[]
 }
 
 const initialState: ItemsType = {
   cartItem: [],
+  cartItemFiltered: []
 }
 
 export const gamesSlice = createSlice({
@@ -16,7 +18,7 @@ export const gamesSlice = createSlice({
       const game: {}[] = action.payload.game;
 
       state.cartItem.push({ game });
-    }
+    },
   }
 })
 

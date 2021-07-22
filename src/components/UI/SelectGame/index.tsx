@@ -9,7 +9,7 @@ declare module 'react' {
 
 interface SelectGameProps {
   children: ReactNode;
-  color: string;
+  color?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   background?: string;
 }

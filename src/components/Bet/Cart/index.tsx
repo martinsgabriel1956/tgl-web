@@ -56,17 +56,12 @@ export function Cart() {
   }
 
   function saveGame(game: {}[]) {
-    if(totalPrice < 30) toast.error('O valor mínimo para salvar um jogo é de 30 reais!');
+    if(totalPrice < 5) toast.error('O valor mínimo para salvar um jogo é de 30 reais!');
 
     dispatch(gamesActions.gamesDataFromCart(game));
     dispatch(cartActions.clearCart());
 
     toast.success('Jogo salvo com sucesso!');
-    console.log(game);
-
-    setTimeout(() => {
-      history.push('/dashboard');
-    }, 2000);
   }
 
   return (
@@ -78,7 +73,7 @@ export function Cart() {
         <GameContainer>
           {cartItem.length > 0 &&
             cartItem.map(({ items, type, price, color, id }) => (
-              <Game>
+              <Game key={id} >
                 <DeleteGameContainer color={color}>
                   <DeleteGame onClick={() => deleteGame(id, price)}>
                     <Trash />
@@ -111,7 +106,7 @@ export function Cart() {
       </Container>
       <SaveContainer>
         <SaveButton
-          disabled={totalPrice < 30}
+          disabled={totalPrice < 5}
           onClick={() => saveGame(cartItem)}
         >
           Save

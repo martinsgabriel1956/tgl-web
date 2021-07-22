@@ -4,31 +4,54 @@ import { FiShoppingCart } from "react-icons/fi";
 
 export const Container = styled.div`
   h2 {
-    font-size: 24px;
+    font-size: 1.25em;
     text-transform: uppercase;
     color: #707070;
-
+    display: inline-block;
+    
+    @media (max-width: 767px) {
+      font-size: 1em;
+    }
+    
     span {
       font-size: 24px;
       font-weight: 200;
+      
+      @media (max-width: 767px) {
+        font-size: 20px;
+      }
     }
   }
+  
   p {
     color: #868686;
     font-weight: bold;
     margin-top: 2rem;
     font-size: 17px;
+
+    @media (max-width: 767px) {
+      font-size: 15px;
+      margin-top: 1.5rem;
+    }
   }
 
   span {
     color: #868686;
     font-size: 17px;
     width: 100%;
+
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+    }
   }
 `;
 
 export const Games = styled.div`
   padding-top: 1rem;
+
+  @media screen and (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 export const GameNumbers = styled.div`
@@ -36,6 +59,10 @@ export const GameNumbers = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -63,6 +90,11 @@ export const ActionButton = styled.button`
     background-color: #27c383;
     color: #ffffff;
     transition: all 0.5s;
+  }
+
+  &:disabled {
+    cursor: no-drop;
+    opacity: 0.5;
   }
 `;
 
