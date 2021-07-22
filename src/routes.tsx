@@ -38,13 +38,9 @@ export function Routes() {
   return (
     <>
       <Switch>
-        {isLoggedIn &&
-        location.pathname !== "/dashboard" &&
-        location.pathname !== "/new_bet" ? (
-          <Route path="/*">Conteudo indisponivel</Route>
-        ) : (
+        {isLoggedIn && (
           <>
-            <Route path="/" exact>
+            <Route path="/">
               <Redirect to="/dashboard" />
             </Route>
             <Route path="/dashboard" component={Dashboard} />

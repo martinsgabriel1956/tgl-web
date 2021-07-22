@@ -22,11 +22,10 @@ export function ResetPasswordForm() {
 
     if (!email) {
       toast.error("Entre com um email válido");
+      return;
+    } else {
+      dispatch(authActions.validateEmail({ email }));
     }
-
-    dispatch(authActions.validateEmail({ email }));
-
-    history.push(`/login`);
   }
 
   return (
