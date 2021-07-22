@@ -29,7 +29,7 @@ export const cartSlice = createSlice({
 
       let id = Math.random().toString();
       let date = new Date();
-      let dateFormatted = `${date.getDate()} /0 ${date.getMonth() + 1} / ${date.getFullYear()}}`;
+      let dateFormatted = `${date.getDate()} / 0${date.getMonth() +1} / ${date.getFullYear()}`;
 
       state.totalPrice += price;
       const gamesCart = state.cartItem;
