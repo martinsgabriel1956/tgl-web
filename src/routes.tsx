@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Dashboard } from "./pages/Dashboard";
@@ -17,6 +17,7 @@ type RootState = {
 };
 
 export function Routes() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
@@ -37,21 +38,35 @@ export function Routes() {
   return (
     <>
       <Switch>
-        {isLoggedIn && (
+        {isLoggedIn &&
+        location.pathname !== "/dashboard" &&
+        location.pathname !== "/new_bet" ? (
+          <Route path="/*">Conteudo indisponivel</Route>
+        ) : (
           <>
-            <Route path="/">
+            <Route path="/" exact>
               <Redirect to="/dashboard" />
             </Route>
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/new_bet" component={NewBet} />
           </>
         )}
-        <Route path="/" exact>
-          <Redirect to="/login" />
-        </Route>
-        <Route path="/login" component={Login} />
-        <Route path="/reset_password" component={ResetPassword} />
-        <Route path="/register" component={Register} />
+
+        {location.pathname !== "/reset_password" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/register" &&
+        location.pathname !== "/" ? (
+          <Route path="/*">Conteudo indisponivel</Route>
+        ) : (
+          <>
+            <Route path="/" exact>
+              <Redirect to="/login" />
+            </Route>
+            <Route path="/login" component={Login} />
+            <Route path="/reset_password" component={ResetPassword} />
+            <Route path="/register" component={Register} />
+          </>
+        )}
       </Switch>
     </>
   );
