@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding-bottom: 1rem;
+
+  min-height: calc(100vh - 130px);
 
   section:nth-child(1) {
     padding: 4rem 7rem;

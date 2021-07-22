@@ -7,7 +7,6 @@ export const Container = styled.footer`
   
   width: 100%;
   margin: auto;
-  position: fixed;
 
   border-top: 1px solid #ebebeb;
   bottom: 0;
@@ -21,7 +20,6 @@ export const Container = styled.footer`
   
   @media (max-width: 767px) {
     position: relative;
-    margin-bottom: auto;
   }
 
 `;

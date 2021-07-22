@@ -8,6 +8,7 @@ export const Container = styled.div`
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: space-around;
+  
 
   h2 {
     font-size: 35px;

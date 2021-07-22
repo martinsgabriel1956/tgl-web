@@ -9,19 +9,23 @@ import { Footer } from "../../components/UI/Footer";
 
 export function Login() {
   return (
-    <Container>
-      <Logo />
-      <section>
-        <h2>Authentication</h2>
-        <Card>
-          <LoginForm />
-        </Card>
-        <ButtonGray to="/register">
-          Sign Up
-          <Arrow />
-        </ButtonGray>
-      </section>
+    <>
+      <Container>
+        <Logo />
+        <main>
+          <section>
+            <h2>Authentication</h2>
+            <Card>
+              <LoginForm />
+            </Card>
+            <ButtonGray to="/register">
+              Sign Up
+              <Arrow />
+            </ButtonGray>
+          </section>
+        </main>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 }

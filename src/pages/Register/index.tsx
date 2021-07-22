@@ -10,19 +10,21 @@ import { ButtonGray } from "../../components/UI/ButtonGray";
 
 export function Register() {
   return (
-    <Container>
-      <Logo />
-      <section>
-        <h2>Registration</h2>
-        <Card>
-          <RegisterForm />
-        </Card>
-        <ButtonGray to="/login">
-          <FiArrowLeft />
-          Back
-        </ButtonGray>
-      </section>
+    <>
+      <Container>
+        <Logo />
+        <section>
+          <h2>Registration</h2>
+          <Card>
+            <RegisterForm />
+          </Card>
+          <ButtonGray to="/login">
+            <FiArrowLeft />
+            Back
+          </ButtonGray>
+        </section>
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 }
