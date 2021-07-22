@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
+export const Container = styled.main`
+   min-height: calc(100vh - 130px);
+`;
+
 export const RecentGames = styled.section`
   display: flex;
   align-items: center;
@@ -46,7 +50,7 @@ export const RecentGames = styled.section`
 `;
 
 export const Games = styled.div`
-
+  
 `;
 
 export const NewBet = styled(Link)`
@@ -71,9 +75,45 @@ export const Arrow = styled(FiArrowRight)`
   font-size: 25px;
 `;
 
-export const LatestGames = styled.button`
+export const LatestGamesContainer = styled.div`
+  padding: 2rem 7rem;
+  `;
+
+export const LatestGames = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-bottom: 3rem;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 1rem;
+  
+  padding-bottom: 1.5rem;
+  position: relative;
+
+  &:before {
+    content: "";
+    background: ${props => props.color};
+    position: absolute;
+    left: 0;
+    height: 90px;
+    width: 6px;
+    border-radius: 8px;
+  }
 `;
+
+export const GameNumber = styled.div`
+  color: #868686;
+  font-weight: bold;
+  display: block;
+  padding-bottom: .75rem;
+`;
+
+export const GameInfo = styled.div`
+  color: #868686;
+  font-size: 17px;
+  font-style: normal;
+  padding-bottom: .75rem;
+`;
+
+export const GameType = styled.div`
+  color: ${props => props.color};
+  font-weight: bold;
+`; 

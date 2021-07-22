@@ -1,8 +1,20 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { api } from "../../services/api";
 
-import { RecentGames, Games, NewBet, Arrow, LatestGames } from "./styles";
+import {
+  Container,
+  RecentGames,
+  Games,
+  NewBet,
+  Arrow,
+  LatestGames,
+  LatestGamesContainer,
+  GameNumber,
+  GameType,
+  GameInfo
+} from "./styles";
 
 import { Header } from "../../components/UI/Header";
 import { Footer } from "../../components/UI/Footer";
@@ -18,10 +30,15 @@ type ItemTypes = {
   "min-cart-value": number;
 };
 
-
+type RootState = {
+  games: {
+    cartItem: {}[];
+    cartItemFiltered: {}[];
+  };
+};
 
 export function Dashboard() {
-
+  const dispatch = useDispatch();
   const [items, setItems] = useState([]);
   const [buttonActive, setButtonActive] = useState("");
 
@@ -29,7 +46,11 @@ export function Dashboard() {
     api.get("/types").then((res) => {
       setItems(res.data);
     });
-  }, []);
+  }, [dispatch]);
+
+  const gameNumbers: {}[] = useSelector(
+    (state: RootState) => state.games.cartItem
+  );
 
   function filterGames(gameType: string) {
     setButtonActive(gameType);
@@ -38,7 +59,7 @@ export function Dashboard() {
   return (
     <>
       <Header />
-      <main>
+      <Container>
         <RecentGames>
           <div>
             <h2>Recent Games</h2>
@@ -51,6 +72,7 @@ export function Dashboard() {
                     background={
                       buttonActive === item.type ? item.color : "transparent"
                     }
+                    border={item.color}
                     onClick={() => filterGames(item.type)}
                     color={buttonActive !== item.type ? item.color : "white"}
                   >
@@ -64,7 +86,24 @@ export function Dashboard() {
             <Arrow />
           </NewBet>
         </RecentGames>
-      </main>
+
+        <LatestGamesContainer>
+          {gameNumbers &&
+            gameNumbers.map((item: any) =>
+              item.game.map((item: any, index: number) => (
+                <LatestGames key={index} color={item.color}>
+                  <GameNumber>{item.items.join(", ")}</GameNumber>
+                  <section>
+                    <GameInfo>
+                      {item.date} - (R${item.price.toFixed(2).replace(".", ",")})
+                    </GameInfo>
+                    <GameType color={item.color}>{item.type}</GameType>
+                  </section>
+                </LatestGames>
+              ))
+            )}
+        </LatestGamesContainer>
+      </Container>
       <Footer />
     </>
   );
