@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import { FiArrowRight } from "react-icons/fi";
 
 export const Container = styled.div`
+  display: flex;
   height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: space-around;
-  
 
   h2 {
     font-size: 35px;
@@ -23,7 +21,8 @@ export const Container = styled.div`
   }
 
   @media (max-width: 767px) {
-    grid-template-columns: repeat(1, 1fr);
+    height: auto;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

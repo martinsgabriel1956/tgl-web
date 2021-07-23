@@ -3,8 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 
 export const Container = styled.div`
   height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   align-items: center;
   justify-content: space-around;
   
@@ -21,10 +20,12 @@ export const Container = styled.div`
   }
   
   @media (max-width: 767px) {
-    grid-template-columns: repeat(1, 1fr);
+    height: auto;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+  
 `;
 
 export const Arrow = styled(FiArrowRight)`

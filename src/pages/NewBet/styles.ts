@@ -12,6 +12,15 @@ export const Container = styled.main`
     @media (max-width: 767px) {
       padding: 4rem 1rem;
     }
+
+    @media (min-width: 768px) and (max-width: 900px) {
+      padding: 4rem 2rem;
+      
+    }
+
+    @media (min-width: 900px) and (max-width: 1220px) {
+      padding: 4rem;
+    }
   }
 
   @media screen and (max-width: 767px) {
