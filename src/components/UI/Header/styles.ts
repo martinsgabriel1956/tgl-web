@@ -16,15 +16,13 @@ export const Container = styled.header`
     padding-right: 4rem;
 
     @media (max-width: 900px) {
-      padding: 0 0 0 .5rem;
+      padding: 0 0 0 0.5rem;
       font-size: 17px;
     }
   }
 
   @media (max-width: 767px) {
-    justify-content: space-between;
     padding: 1rem 1.5rem 0.5rem;
-
   }
 `;
 
@@ -39,33 +37,49 @@ export const Logo = styled.nav`
   &:after {
     content: "";
     position: absolute;
-    
+
     background-color: #b5c401;
     top: 42px;
     left: 78px;
-    
+
     width: 60%;
     height: 18%;
-    
+
     border-radius: 2rem;
 
     @media (max-width: 767px) {
       left: -8px;
-      padding: 0 .25rem;
-    
+      padding: 0 0.25rem;
+
       width: 40%;
       height: 18%;
+      padding: 0 1.75rem;
     }
 
-    @media (max-width: 767px) {
-      padding: 0 1.75rem;
+    @media (min-width: 768px) and (max-width: 840px) {
+      top: 46px;
+      left: 40px;
+      width: 70%;
+    }
+    @media (min-width: 841px) and (max-width: 901px) {
+      top: 46px;
+      left: 42px;
+      width: 70%;
     }
   }
 
   @media (max-width: 767px) {
     padding: 0;
   }
-  
+
+  @media (min-width: 841px) and (max-width: 901px) {
+    padding-left: 3.25rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 840px) {
+    padding-left: 3rem;
+  }
+
   a {
     padding: 0 2rem;
   }

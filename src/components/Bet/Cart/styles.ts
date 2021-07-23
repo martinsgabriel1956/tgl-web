@@ -35,6 +35,11 @@ export const Container = styled.form`
     width: 320px;
     margin: 0 auto;
   }
+  
+  @media (max-width: 341px) {
+    width: 306px;
+    
+  }
 `;
 
 export const SaveContainer = styled.div`
@@ -49,6 +54,12 @@ export const SaveContainer = styled.div`
   @media (max-width: 767px) {
     width: 320px;
     margin: 0 auto;
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 341px) {
+    width: 306px;
+    margin-bottom: 24px;
   }
 `;
 

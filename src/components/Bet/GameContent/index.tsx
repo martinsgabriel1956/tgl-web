@@ -77,12 +77,11 @@ export function GameContent() {
     color: string,
     maxNumber: number
   ) {
-
     if (numbersGame.length !== maxNumber) {
       toast.error("Selecione todos os números");
       return;
     }
-    
+
     dispatch(cartActions.receiveGame({ numbersGame, price, type, color }));
     clearGame();
   }
@@ -129,10 +128,10 @@ export function GameContent() {
   useEffect(() => {
     const awaitGame = () => {
       if (items.length) handleGameSelect(0);
-    }
+    };
     return () => {
       awaitGame();
-    }
+    };
   }, []);
 
   return (
@@ -163,12 +162,12 @@ export function GameContent() {
         <span>{items && description}</span>
 
         <GameNumbers>{items && gameButtons()}</GameNumbers>
-        
+
         <ButtonContainer>
           <div>
             <ActionButton 
-              onClick={() => completeGame(maxNumber, range)}
-            >
+              onClick={() => completeGame(maxNumber, range)
+            }>
               Complete game
             </ActionButton>
             <ActionButton onClick={clearGame}>Clear game</ActionButton>

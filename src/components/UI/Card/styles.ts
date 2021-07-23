@@ -32,4 +32,12 @@ export const Container = styled.section`
       margin-right: 1.5rem;
     }
   }
+
+  @media (min-width: 320px) and (max-width: 374px) {
+    width: 300px;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 1rem;
+  }
 `;

@@ -12,8 +12,14 @@ export const Container = styled.button`
   font-size: 12px;
   color: ${(props) => props.color};
 
+  &:disabled {
+    cursor: no-drop;
+    opacity: 0.5;
+  }
+
   @media (max-width: 767px) {
     margin-top: 1rem;
+    margin-right: .5rem;
     padding: .40rem 1.25rem;
   }
 `;

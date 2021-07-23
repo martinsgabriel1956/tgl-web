@@ -4,7 +4,7 @@ export const Container = styled.footer`
   background-color: transparent;
 
   padding: 1.5rem;
-  
+
   width: 100%;
   margin: auto;
 
@@ -17,9 +17,4 @@ export const Container = styled.footer`
     font-size: 15px;
     color: #707070;
   }
-  
-  @media (max-width: 767px) {
-    position: relative;
-  }
-
-`;
+  `;

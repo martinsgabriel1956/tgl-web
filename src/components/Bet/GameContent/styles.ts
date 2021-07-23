@@ -8,21 +8,21 @@ export const Container = styled.div`
     text-transform: uppercase;
     color: #707070;
     display: inline-block;
-    
+
     @media (max-width: 767px) {
       font-size: 1em;
     }
-    
+
     span {
       font-size: 24px;
       font-weight: 200;
-      
+
       @media (max-width: 767px) {
         font-size: 20px;
       }
     }
   }
-  
+
   p {
     color: #868686;
     font-weight: bold;
@@ -31,7 +31,7 @@ export const Container = styled.div`
 
     @media (max-width: 767px) {
       font-size: 15px;
-      margin-top: 1.5rem;
+      margin: 1.5rem auto 0;
     }
   }
 
@@ -60,8 +60,31 @@ export const GameNumbers = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 
-  @media (max-width: 767px) {
+  @media (max-width: 357px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  @media (min-width: 358px) and (max-width: 419px) {
     grid-template-columns: repeat(6, 1fr);
+  }
+  
+  @media (min-width: 420px) and (max-width: 564px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  @media (min-width: 565px) and (max-width: 767px) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  
+  @media (min-width: 768px) and (max-width: 900px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  @media (min-width: 901px) and (max-width: 1023px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  @media (min-width: 1024px) and (max-width: 1219px) {
+    grid-template-columns: repeat(9, 1fr);
   }
 `;
 
@@ -72,8 +95,22 @@ export const ButtonContainer = styled.div`
 
   margin-top: 2rem;
 
+  div:nth-child(1) {
+    @media (min-width: 768px) and (max-width: 1024px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+  
   div:nth-child(1) button:nth-child(1) {
     margin-right: 1.5rem;
+    
+    @media (min-width: 768px) and (max-width: 1024px) {
+      margin-right: 0;
+      margin-bottom: .5rem;
+    }
   }
 
   @media (max-width: 767px) {

@@ -14,6 +14,7 @@ interface SelectGameProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   background?: string;
   border?: string;
+  disabled?: boolean | undefined
 }
 
 export function SelectGame({ children, ...props }: SelectGameProps) {
@@ -21,6 +22,7 @@ export function SelectGame({ children, ...props }: SelectGameProps) {
     <Container 
     background={props.background}
     border={props.border}
+    disabled={props.disabled}
     {...props}>
       {children}
     </Container>
