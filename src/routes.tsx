@@ -40,11 +40,13 @@ export function Routes() {
       <Switch>
         {isLoggedIn && (
           <>
-            <Route path="/">
+            <Route path="/" exact>
               <Redirect to="/dashboard" />
             </Route>
-            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/login" component={Login} />
+            <Route path="/reset_password" component={ResetPassword} />
             <Route path="/new_bet" component={NewBet} />
+            <Route path="/dashboard" component={Dashboard} />
           </>
         )}
 
@@ -55,7 +57,7 @@ export function Routes() {
           <Route path="/*">Conteudo indisponivel</Route>
         ) : (
           <>
-            <Route path="/" exact>
+            <Route path="/" >
               <Redirect to="/login" />
             </Route>
             <Route path="/login" component={Login} />
