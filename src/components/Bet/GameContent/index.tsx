@@ -78,7 +78,7 @@ export function GameContent() {
     maxNumber: number
   ) {
     if (numbersGame.length !== maxNumber) {
-      toast.error("Selecione todos os números");
+      toast.error("Selecione a quantidade de números necessários do jogo");
       return;
     }
 
@@ -103,7 +103,7 @@ export function GameContent() {
     maxNumber: number,
     price: number,
     gameName: string,
-    color: string
+    color: string,
   ) {
     dispatch(newBetActions.addToCart({ value, maxNumber, price, gameName }));
   }

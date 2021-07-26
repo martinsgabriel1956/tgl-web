@@ -1,3 +1,4 @@
+import { FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -21,7 +22,6 @@ import {
 
 import { cartActions } from "../../../store/cart";
 import { gamesActions } from "../../../store/games";
-import { FormEvent } from "react";
 
 type RootState = {
   cart: {
@@ -57,8 +57,13 @@ export function Cart() {
   }
 
   function saveGame(game: {}[]) {
-    if (totalPrice < 5)
-      toast.error("O valor mínimo para salvar um jogo é de 30 reais!");
+
+    const stillNotReachATotalPrice = 30 - totalPrice;
+
+    if (totalPrice < 30) {
+      toast.error(`Faltam R$ ${stillNotReachATotalPrice.toFixed(2).replace('.', ',')} para o valor minimo`);
+      return;
+    }
 
     dispatch(gamesActions.gamesDataFromCart({ game }));
     dispatch(cartActions.clearCart());
@@ -112,12 +117,11 @@ export function Cart() {
 
         <p>
           <strong>Cart</strong> Total:{" "}
-          {totalPrice > 0 && "R$" + totalPrice.toFixed(2).replace(".", ",")}
+          {totalPrice >= 0 && `R$ ${totalPrice.toFixed(2).replace(".", ",")}`}
         </p>
       </Container>
       <SaveContainer>
         <SaveButton
-          disabled={totalPrice < 5}
           onClick={() => saveGame(cartItem)}
         >
           Save

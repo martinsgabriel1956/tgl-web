@@ -1,5 +1,4 @@
 import { FormEvent, useRef } from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -10,7 +9,6 @@ import { Container, Control, Arrow } from "./styles";
 import { ButtonGreen } from "../../UI/ButtonGreen";
 
 export function ResetPasswordForm() {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const emailInputRef = useRef<HTMLInputElement>(null);

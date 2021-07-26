@@ -16,19 +16,24 @@ type RootState = {
   };
 };
 
-export function Routes() {
+type LoginType = {
+  email?: string | null;
+  password?: string | null;
+}
+
+export function Routes({ email, password }: LoginType )  {
   const location = useLocation();
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-  let email: string | null = localStorage.getItem("email");
-  let password: string | null = localStorage.getItem("password");
+  email = localStorage.getItem("email");
+  password = localStorage.getItem("password");
+
+  const userVerified = email && password;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const autoLogin = () => {
-    if (email && password) {
-      dispatch(authActions.login({ email, password }));
-    }
+  function autoLogin () {
+    if (userVerified) dispatch(authActions.login({ email, password }));
   };
 
   useEffect(() => {

@@ -5,6 +5,11 @@ type ItemsType = {
   cartItemFiltered: {}[];
 };
 
+type ActionType = {
+  game?: {}[];
+  gameType?: string;
+}
+
 const initialState: ItemsType = {
   cartItem: [],
   cartItemFiltered: [],
@@ -15,15 +20,13 @@ export const gamesSlice = createSlice({
   initialState,
   reducers: {
     gamesDataFromCart(state, action) {
-      const game: {}[] = action.payload.game;
-
-      state.cartItem.push({ game });
+      const { game }: ActionType = action.payload;
+      const { cartItem } = state;
+      
+      cartItem.push({ game });
     },
     filterGameCart(state, action) {
-      const gameType: string = action.payload.gameType;
-
-      console.log(gameType);
-      console.log(state.cartItem);
+      const { gameType }: ActionType = action.payload;
 
       state.cartItemFiltered = state.cartItem.map((item: any) =>
         item.game.filter((gameSelected: any) => gameSelected.type === gameType)

@@ -30,12 +30,18 @@ export function RegisterForm(props: RegisterFormProps) {
 
     dispatch(authActions.register({ name, email, password }));
 
-    if (!name || !email || !password) {
+    const emptyField = !name || !email || !password;
+
+    if (emptyField) {
       toast.error("Preencha todos os campos");
       return;
     }
+
+    toast.success("Usuário cadastrado!");
     
-    history.push("/login");
+    setTimeout(() => {
+      history.push("/login");
+    }, 2000);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from "react";
-import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import { authActions } from "../../../store/auth";
@@ -18,7 +18,6 @@ type RootState = {
 export function LoginForm() {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -32,9 +31,8 @@ export function LoginForm() {
 
     dispatch(authActions.login({ email, password }));
     
-    if (!isLoggedIn) {
-      return;
-    }
+    if (!isLoggedIn) return;
+
     history.push("/dashboard");
   }
 

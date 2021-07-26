@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-
 type AuthProps = {
   users: {}[];
   isLoggedIn: boolean;
 };
+
+type ActionType = {
+  email: string;
+  password: string;
+  name: string;
+}
 
 const initialState: AuthProps = {
   users: [
@@ -22,18 +27,20 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      const email: string = action.payload.email;
-      const password: string = action.payload.password;
+      const { email, password }: ActionType = action.payload;
 
       const emailVerified = localStorage.getItem("email") === email;
       const passwordVerified = localStorage.getItem("password") === password;
+      const userVerified = emailVerified && passwordVerified;
 
-      if(email.trim() === '' || password.trim() === '') {
+      const fieldsEmpty = email.trim() === '' || password.trim() === '';
+
+      if(fieldsEmpty) {
         toast.error("Preencha todos os campos!")
         return;
       }
 
-      if (!emailVerified && !passwordVerified) {
+      if (!userVerified) {
         toast.error("Email ou senha incorretos");
         return;
       }
@@ -41,18 +48,20 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     register(state, action) {
-      const name: string = action.payload.name;
-      const email: string = action.payload.email;
-      const password: string = action.payload.password;
+      const { email, password, name }: ActionType = action.payload;
+      let { isLoggedIn, users } = state;
 
-      state.users.push({ email, password, name });
+      users.push({ email, password, name });
 
-      if (email.trim().length > 0 && password.trim().length > 0) {
+      const emailVerified = email.trim().length > 0;
+      const passwordVerified = password.trim().length > 0;
+      const userRegistered = emailVerified && passwordVerified;
 
+      if (userRegistered) {
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
 
-        state.isLoggedIn = true;
+        isLoggedIn = true;
       }
     },
 
@@ -65,11 +74,13 @@ export const authSlice = createSlice({
     },
     
     validateEmail(state, action) {
-      const email: string = action.payload.email;
+      const { email }: ActionType = action.payload;
 
-      if (email.trim().length > 0 && email === localStorage.getItem("email")) {
+      const emailIsExist = email.trim().length > 0 && email === localStorage.getItem("email");
+
+      if (emailIsExist) {
         state.isLoggedIn = true;
-        toast.success('Senha redefinida!')
+        toast.success('Senha redefinida!');
       } else {
         state.isLoggedIn = false;
         toast.error('Digite o email cadastrado!');

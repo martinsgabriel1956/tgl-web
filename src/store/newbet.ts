@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 type NewBetProps = {
   items: number[];
   price: number;
   type: string;
+};
+
+type ActionTypes = {
+  value: number;
+  maxNumber: number;
+  range: number;
 };
 
 const initialState: NewBetProps = {
@@ -17,26 +24,28 @@ export const newBetSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      const newNumber: number = action.payload.value;
-      const maxNumber: number = action.payload.maxNumber;
-      const gameNumbers = state.items;
+      const { value, maxNumber }: ActionTypes = action.payload;
+      const { items } = state;
 
-      const existingNumber = gameNumbers.find(item => item === newNumber);
-      const almostAddNumberInCart = gameNumbers.length < maxNumber
+      const gameNumbers = items;
 
-      if(!existingNumber && almostAddNumberInCart) gameNumbers.push(newNumber);
-      if(existingNumber) gameNumbers.splice(gameNumbers.indexOf(newNumber), 1);
-      
+      const existingNumber = gameNumbers.find((item) => item === value);
+      const almostAddNumberInCart = gameNumbers.length < maxNumber;
+
+      if (!existingNumber && almostAddNumberInCart) gameNumbers.push(value);
+      if (!existingNumber && !almostAddNumberInCart) toast.error("Você já preencheu todos os números desse jogo");
+      if (existingNumber) {
+        gameNumbers.splice(gameNumbers.indexOf(value), 1);
+      }
     },
     completeGame(state, action) {
-      const gameNumbers = state.items;
+      const { maxNumber, range }: ActionTypes = action.payload;
+      const { items } = state;
 
-      const maxNumber: number = action.payload.maxNumber;
-      const range: number = action.payload.range;
+      const gameNumbers = items;
 
       while (gameNumbers.length < maxNumber) {
         let newItem = Math.ceil(Math.random() * range + 1);
-
         const matchNumber = gameNumbers.find((item) => item === newItem);
 
         if (!matchNumber) gameNumbers.push(newItem);

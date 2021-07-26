@@ -12,50 +12,56 @@ type CartGame = {
   totalPrice: number;
 };
 
+type ActionType = {
+  id: string;
+  numbersGame: number[];
+  price: number;
+  type: string;
+  color: string;
+};
+
 const initialState: CartGame = {
   cartItem: [],
   totalPrice: 0,
-}
+};
 
 export const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     receiveGame(state, action) {
-      const gameNumbers: number[] = action.payload.numbersGame;
-      const price: number = action.payload.price;
-      const name: string = action.payload.type;
-      const color: string = action.payload.color;
+      const { numbersGame, price, type, color }: ActionType = action.payload;
+      let { cartItem } = state;
 
       let id = Math.random().toString();
       let date = new Date();
-      let dateFormatted = `${date.getDate()} / 0${date.getMonth() +1} / ${date.getFullYear()}`;
+      let dateFormatted = `${date.getDate()} / 0${
+        date.getMonth() + 1
+      } / ${date.getFullYear()}`;
 
       state.totalPrice += price;
-      const gamesCart = state.cartItem;
+      const gamesCart = cartItem;
 
       gamesCart.push({
         id,
-        items: gameNumbers,
+        items: numbersGame,
         price,
-        type: name,
+        type,
         color,
         date: dateFormatted,
       });
     },
     deleteGame(state, action) {
-      const id = action.payload.id;
-      const price = action.payload.price;
+      const { id, price }: ActionType = action.payload;
 
       state.totalPrice -= price;
-
-      state.cartItem = state.cartItem.filter(item => item.id !== id)
+      state.cartItem = state.cartItem.filter((item) => item.id !== id);
     },
     clearCart(state) {
       state.totalPrice = 0;
       state.cartItem = [];
-    }
-  }
+    },
+  },
 });
 
 export const cartActions = cartSlice.actions;
