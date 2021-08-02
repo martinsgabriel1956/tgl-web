@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import { authActions } from "../../../store/auth";
 
@@ -39,11 +39,18 @@ export function LoginForm() {
     const email = emailInputRef.current?.value;
     const password = passwordInputRef.current?.value;
 
+    const isValid = email && password;
+
+    if (!isValid) toast.error("Preencha todos os campos!");
+
     dispatch(authActions.login({ email, password }));
 
-    if (!isLoggedIn) return;
-
-    history.push("/dashboard");
+    if (isLoggedIn) {
+      setTimeout(() => {
+        toast.success("Logged!, You're so be ready to bet!!!");
+        history.push("/dashboard");
+      }, 2000);
+    }
   }
 
   return (

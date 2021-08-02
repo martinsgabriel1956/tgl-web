@@ -2,7 +2,15 @@ import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { authActions } from "../../../store/auth";
-import { Container, Logo, NavContainer, LogoutButton, Arrow, LogoContainer } from "./styles";
+import {
+  Container,
+  Logo,
+  NavContainer,
+  LogoutButton,
+  Arrow,
+  LogoContainer,
+} from "./styles";
+import toast, { Toaster } from "react-hot-toast";
 
 export function Header() {
   const dispatch = useDispatch();
@@ -10,29 +18,33 @@ export function Header() {
   const location = useLocation();
 
   const logoutHandler = () => {
-    dispatch(authActions.logout());
-    history.push(`/login`);
+    toast.success("Muito obrigado por apostar conosco 😊");
+    setTimeout(() => {
+      dispatch(authActions.logout());
+      history.push(`/login`);
+    }, 3000);
   };
 
   return (
-    <Container>
-      <LogoContainer>
-        <Logo>
-          <h1>TGL</h1>
-        </Logo>
-        {
-          location.pathname === "/new_bet" && (
+    <>
+      <Toaster />
+      <Container>
+        <LogoContainer>
+          <Logo>
+            <h1>TGL</h1>
+          </Logo>
+          {location.pathname === "/new_bet" && (
             <NavLink to="/dashboard">Home</NavLink>
-          )
-        }
-      </LogoContainer>
-      <NavContainer>
-        <NavLink to="#">Account</NavLink>
-        <LogoutButton onClick={logoutHandler}>
-          Logout
-          <Arrow />
-        </LogoutButton>
-      </NavContainer>
-    </Container>
+          )}
+        </LogoContainer>
+        <NavContainer>
+          <NavLink to="#">Account</NavLink>
+          <LogoutButton onClick={logoutHandler}>
+            Logout
+            <Arrow />
+          </LogoutButton>
+        </NavContainer>
+      </Container>
+    </>
   );
 }

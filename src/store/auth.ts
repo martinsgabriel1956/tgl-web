@@ -1,15 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
+import { api } from "../services/api";
 
 type AuthProps = {
   users: {}[];
-  isLoggedIn: boolean;
+  isLoggedIn: string | null ;
+  error: boolean;
 };
 
 type ActionType = {
   email: string;
   password: string;
   name: string;
+}
+
+type RecoveryProps = {
+  token: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const initialState: AuthProps = {
@@ -19,7 +27,8 @@ const initialState: AuthProps = {
       password: localStorage.getItem("password"),
     },
   ],
-  isLoggedIn: false,
+  isLoggedIn: localStorage.getItem('token'),
+  error: true
 };
 
 export const authSlice = createSlice({
@@ -27,65 +36,69 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
+      state.isLoggedIn = null;
+
       const { email, password }: ActionType = action.payload;
 
-      const emailVerified = localStorage.getItem("email") === email;
-      const passwordVerified = localStorage.getItem("password") === password;
-      const userVerified = emailVerified && passwordVerified;
+      api.post('/login', {
+        email,
+        password
+      }).then(res => {
+        localStorage.setItem('token', res.data.token);
+      })
 
-      const fieldsEmpty = email.trim() === '' || password.trim() === '';
-
-      if(fieldsEmpty) {
-        toast.error("Preencha todos os campos!")
-        return;
-      }
-
-      if (!userVerified) {
-        toast.error("Email ou senha incorretos");
-        return;
-      }
-
-      state.isLoggedIn = true;
+      state.isLoggedIn = localStorage.getItem('token');
     },
     register(state, action) {
       const { email, password, name }: ActionType = action.payload;
-      let { isLoggedIn, users } = state;
+      
+      state.error = true;
 
-      users.push({ email, password, name });
+      api.post('/users', {
+        name,
+        email,
+        password
+      })
 
-      const emailVerified = email.trim().length > 0;
-      const passwordVerified = password.trim().length > 0;
-      const userRegistered = emailVerified && passwordVerified;
+      state.error = false;
 
-      if (userRegistered) {
-        localStorage.setItem("email", email);
-        localStorage.setItem("password", password);
-
-        isLoggedIn = true;
-      }
+      toast.success('Account Created!!')
     },
 
     logout(state) {
-      state.isLoggedIn = false;
+      state.isLoggedIn = null;
       
-      localStorage.removeItem("email");
-      localStorage.removeItem("password");
-      localStorage.removeItem("name");
+      localStorage.removeItem("token");
     },
     
     validateEmail(state, action) {
       const { email }: ActionType = action.payload;
 
-      const emailIsExist = email.trim().length > 0 && email === localStorage.getItem("email");
-
-      if (emailIsExist) {
-        state.isLoggedIn = true;
-        toast.success('Senha redefinida!');
-      } else {
-        state.isLoggedIn = false;
-        toast.error('Digite o email cadastrado!');
-      }
+      api.post('/forgot_password', {
+        email
+      }).catch(e => {
+        toast.error('Digite um email que esteja cadastrado!');
+        console.log(e);
+        return;
+      })
+      toast.success('Email enviado para o email cadastrado!');
     },
+    recoveryPassword(state, action) {
+      const { token, password, confirmPassword }: RecoveryProps = action.payload;
+
+      api.put('/reset_password', {
+        token,
+        password,
+        confirmPassword
+      }).then(res => {
+        toast.success('Senha alterada com sucesso!');
+      })
+      .catch(err => {
+        toast.error('Senha ou Token não confere com as informações do usuário');
+      })
+
+      
+    }
   },
 });
 
