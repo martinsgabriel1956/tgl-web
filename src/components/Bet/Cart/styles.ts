@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FiTrash2, FiArrowRight } from "react-icons/fi";
+import { FiTrash2, FiArrowRight, FiShoppingCart } from "react-icons/fi";
 
 export const Container = styled.form`
   margin-top: 2.5rem;
@@ -160,3 +160,7 @@ export const GamePrice = styled.span`
   margin-left: .5rem;
   color: #868686;
 `;
+
+export const EmptyCartIcon = styled(FiShoppingCart) `
+  margin-right: .5rem;
+`

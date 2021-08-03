@@ -70,9 +70,9 @@ export function Dashboard() {
     (state: RootState) => state.games.cartItemFiltered
   );
 
-  function filterGames(gameType: string) {
+  function filterGames(gameType: string, games: {}[]) {
     setButtonActive(gameType);
-    dispatch(gamesActions.filterGameCart({ gameType }));
+    dispatch(gamesActions.filterGameCart({ gameType, games }));
   }
 
   return (
@@ -92,8 +92,8 @@ export function Dashboard() {
                       buttonActive === item.type ? item.color : "transparent"
                     }
                     border={item.color}
-                    onClick={() => filterGames(item.type)}
-                    disabled={gameNumbers <= []}
+                    onClick={() => filterGames(item.type, games)}
+                    disabled={gameNumbers < []}
                     color={buttonActive !== item.type ? item.color : "white"}
                   >
                     {item.type}
@@ -108,43 +108,44 @@ export function Dashboard() {
         </RecentGames>
 
         <LatestGamesContainer>
-          {gameNumbers <= [] && (
+          {gameNumbers < [] && (
             <LatestGames>
               <img src={emptyCart} alt="empty cart" />
               <span>Faça um novo jogo para aparecer aqui!</span>
             </LatestGames>
           )}
+
           {games &&
             cartGameFiltered.length <= 0 &&
             games.map(
               (
-                { color, numbers, date_string, total_price, type }: any,
+                game: any,
                 index: number
-              ) => {
-                <LatestGames key={index} color={color}>
-                  <GameNumber>{numbers}</GameNumber>
+              ) => (
+                <LatestGames key={index} color={game.games.color}>
+                  <GameNumber>{game.numbers}</GameNumber>
                   <section>
                     <GameInfo>
-                      {date_string} - (R$
-                      {total_price.toFixed(2).replace(".", ",")})
+                      {game.date_string} - (R$
+                      {game.total_price.toFixed(2).replace(".", ",")})
                     </GameInfo>
-                    <GameType color={color}>{type}</GameType>
+                    <GameType color={game.games.color}>{game.games.type}</GameType>
                   </section>
-                </LatestGames>;
-              }
+                </LatestGames>
+              )
             )}
 
           {cartGameFiltered.length > 0 &&
-            cartGameFiltered.map(({ color, numbers, date_string, total_price, type }: any, index: number) => (
-              <LatestGames key={index} color={color}>
-                <GameNumber>{numbers}</GameNumber>
+            cartGameFiltered.map((game: any, index: number) => (
+              <LatestGames key={index} color={game.games.color}>
+                <GameNumber>{game.numbers}</GameNumber>
                 <section>
                   <GameInfo>
-                    {date_string} - (R$
-                    {total_price.toFixed(2).replace(".", ",")})
+                    {game.date_string} - (R$
+                    {game.total_price.toFixed(2).replace(".", ",")})
                   </GameInfo>
-                  <GameType color={color}>
-                    {type}
+                  <GameType color={game.games.color}>
+                    {game.games.type}
                   </GameType>
                 </section>
               </LatestGames>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FiArrowRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
   display: flex;
@@ -128,5 +129,27 @@ export const Arrow = styled(FiArrowRight)`
 
   @media (max-width: 767px) {
     display: none;
+  }
+`;
+
+export const NewBet = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #b5c401;
+  text-decoration: none;
+  font-weight: bold;
+
+  padding-right: 10rem;
+
+  @media (max-width: 767px) {
+    text-align: center;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) and (max-width: 840px) {
+    padding-right: 0;
+    padding-left: 1rem;
   }
 `;

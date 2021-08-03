@@ -22,28 +22,26 @@ export const gamesSlice = createSlice({
   reducers: {
     gamesDataFromCart(state, action) {
       const { game }: ActionType = action.payload;
-      const { cartItem } = state;
+
+      const token = localStorage.getItem("token");
 
       api.post(
         "/bets",
-        {
-          bets: game,
-        },
+        { bets: game },
         {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
-
-      cartItem.push({ game });
+      state.cartItem.push({ game });
+      console.log(game);
     },
     filterGameCart(state, action) {
       const { gameType }: ActionType = action.payload;
+      const gamesFiltered: {}[] = action.payload.games;
 
-      state.cartItemFiltered = state.cartItem.map((item: any) =>
-        item.game.filter((gameSelected: any) => gameSelected.type === gameType)
-      );
+      state.cartItemFiltered = gamesFiltered.filter( (gameSelected: any) => gameSelected.type === gameType)
     },
   },
 });

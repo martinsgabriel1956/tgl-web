@@ -8,6 +8,7 @@ import { NewBet } from "./pages/NewBet";
 import { Register } from "./pages/Register";
 import { ResetPassword } from "./pages/ResetPassword";
 import { Recovery } from "./pages/Recovery";
+import { Profile } from "./pages/Profile";
 
 import { authActions } from "./store/auth";
 
@@ -53,6 +54,7 @@ export function Routes({ email, password }: LoginType) {
             <Route path="/reset_password" component={ResetPassword} />
             <Route path="/new_bet" component={NewBet} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/profile" component={Profile} />
           </>
         )}
         

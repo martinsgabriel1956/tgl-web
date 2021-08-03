@@ -113,7 +113,7 @@ export const LatestGames = styled.div`
   flex-direction: column;
   padding-left: 1rem;
   
-  padding-bottom: 1.5rem;
+  padding-bottom: 2rem;
   position: relative;
 
   &:before {

@@ -2,7 +2,7 @@ import { FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { FiShoppingCart } from "react-icons/fi";
+
 
 import {
   Container,
@@ -18,6 +18,7 @@ import {
   GameType,
   GamePrice,
   Game,
+  EmptyCartIcon
 } from "./styles";
 
 import { cartActions } from "../../../store/cart";
@@ -59,7 +60,6 @@ export function Cart() {
   }
 
   function saveGame(game: {}[]) {
-
     const stillNotReachATotalPrice = 30 - totalPrice;
 
     if (totalPrice < 30) {
@@ -111,7 +111,7 @@ export function Cart() {
 
           {cartItem.length < 1 && (
             <EmptyCart>
-              <FiShoppingCart />
+              <EmptyCartIcon />
               Carrinho vázio
             </EmptyCart>
           )}

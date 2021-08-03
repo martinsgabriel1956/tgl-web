@@ -9,6 +9,7 @@ import {
   LogoutButton,
   Arrow,
   LogoContainer,
+  NewBet
 } from "./styles";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -38,11 +39,23 @@ export function Header() {
           )}
         </LogoContainer>
         <NavContainer>
-          <NavLink to="#">Account</NavLink>
-          <LogoutButton onClick={logoutHandler}>
-            Logout
-            <Arrow />
-          </LogoutButton>
+          {location.pathname !== "/profile" ? (
+            <>
+              <NavLink to="/profile">Account</NavLink>
+              <LogoutButton onClick={logoutHandler}>
+                Logout
+                <Arrow />
+              </LogoutButton>
+            </>
+          ) : (
+            <>
+              <NavLink to="/dashboard">Home</NavLink>
+              <NewBet to="/new_bet">
+                New Bet
+                <Arrow />
+              </NewBet>
+            </>
+          )}
         </NavContainer>
       </Container>
     </>

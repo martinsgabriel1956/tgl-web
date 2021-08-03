@@ -94,7 +94,7 @@ export function GameContent() {
     setDescription(items[index]["description"]);
     setRange(items[index]["range"]);
     setType(items[index]["type"]);
-    setGameId(items[index]["game_id"]);
+    setGameId(items[index]["id"]);
     setMaxNumber(items[index]["max_number"]);
     setMinCartNumber(items[index]["min_cart_value"]);
     setPrice(items[index]["price"]);
