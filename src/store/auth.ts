@@ -45,6 +45,8 @@ export const authSlice = createSlice({
         password
       }).then(res => {
         localStorage.setItem('token', res.data.token);
+      }).catch(err => {
+        toast.error('Tente entrar com email ou senha existente!!');
       })
 
       state.isLoggedIn = localStorage.getItem('token');
@@ -89,7 +91,7 @@ export const authSlice = createSlice({
       api.put('/reset_password', {
         token,
         password,
-        confirmPassword
+        password_confirmation: confirmPassword,
       }).then(res => {
         toast.success('Senha alterada com sucesso!');
       })

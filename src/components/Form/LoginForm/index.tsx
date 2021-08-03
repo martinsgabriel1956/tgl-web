@@ -46,10 +46,8 @@ export function LoginForm() {
     dispatch(authActions.login({ email, password }));
 
     if (isLoggedIn) {
-      setTimeout(() => {
-        toast.success("Logged!, You're so be ready to bet!!!");
-        history.push("/dashboard");
-      }, 2000);
+      toast.success("Logged!, You're so be ready to bet!!!");
+      history.push("/dashboard");
     }
   }
 
@@ -63,7 +61,7 @@ export function LoginForm() {
         <Control>
           <ShowPasswordContainer>
             <input
-              type={isRevealPwd ? "text" : "password"}
+              type={isRevealPwd ? "text" : "current-password"}
               value={pwd}
               onChange={(e) => setPwd(e.target.value)}
               placeholder="Password"
