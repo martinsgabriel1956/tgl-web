@@ -52,10 +52,11 @@ export function GameContent() {
   const [price, setPrice] = useState(0);
   const [color, setColor] = useState("");
   const [maxNumber, setMaxNumber] = useState(0);
+  const [gameId, setGameId] = useState(0);
   const [minCartNumber, setMinCartNumber] = useState(0);
 
   useEffect(() => {
-    api.get("/types").then((res) => setItems(res.data));
+    api.get("/games").then((res) => setItems(res.data));
   }, [dispatch]);
 
   function clearGame() {
@@ -75,14 +76,15 @@ export function GameContent() {
     price: number,
     type: string,
     color: string,
-    maxNumber: number
+    maxNumber: number,
+    gameId: number,
   ) {
     if (numbersGame.length !== maxNumber) {
       toast.error("Selecione a quantidade de números necessários do jogo");
       return;
     }
 
-    dispatch(cartActions.receiveGame({ numbersGame, price, type, color }));
+    dispatch(cartActions.receiveGame({ numbersGame, price, type, color, gameId }));
     clearGame();
   }
 
@@ -92,8 +94,9 @@ export function GameContent() {
     setDescription(items[index]["description"]);
     setRange(items[index]["range"]);
     setType(items[index]["type"]);
-    setMaxNumber(items[index]["max-number"]);
-    setMinCartNumber(items[index]["min-cart-value"]);
+    setGameId(items[index]["game_id"]);
+    setMaxNumber(items[index]["max_number"]);
+    setMinCartNumber(items[index]["min_cart_value"]);
     setPrice(items[index]["price"]);
     setColor(items[index]["color"]);
   }
@@ -177,7 +180,7 @@ export function GameContent() {
             <AddToCartButton
               disabled={gameNumber.length <= 0}
               onClick={() =>
-                onAddToCart(gameNumber, price, type, color, maxNumber)
+                onAddToCart(gameNumber, price, type, color, maxNumber, gameId)
               }
             >
               <CartImg />

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { api } from "../../services/api";
 
 import { gamesActions } from "../../store/games";
-import emptyCart from '../../assets/empty_cart.svg';
+import emptyCart from "../../assets/empty_cart.svg";
 
 import {
   Container,
@@ -29,8 +29,8 @@ type ItemTypes = {
   range: number;
   price: number;
   color: string;
-  "max-number": number;
-  "min-cart-value": number;
+  max_number: number;
+  min_cart_value: number;
 };
 
 type RootState = {
@@ -43,18 +43,29 @@ type RootState = {
 export function Dashboard() {
   const dispatch = useDispatch();
   const [items, setItems] = useState([]);
+  const [games, setGames] = useState([]);
   const [buttonActive, setButtonActive] = useState("");
 
   useEffect(() => {
-    api.get("/types").then((res) => {
+    api.get("/games").then((res) => {
       setItems(res.data);
     });
+
+    api
+      .get("/bets?page=1&listNumber=10", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setGames(res.data.data);
+      });
   }, [dispatch]);
 
   const gameNumbers: {}[] = useSelector(
     (state: RootState) => state.games.cartItem
   );
-  
+
   const cartGameFiltered: {}[] = useSelector(
     (state: RootState) => state.games.cartItemFiltered
   );
@@ -99,44 +110,45 @@ export function Dashboard() {
         <LatestGamesContainer>
           {gameNumbers <= [] && (
             <LatestGames>
-              <img src={emptyCart} alt='empty cart' />
+              <img src={emptyCart} alt="empty cart" />
               <span>Faça um novo jogo para aparecer aqui!</span>
             </LatestGames>
-          )} 
-          {gameNumbers &&
+          )}
+          {games &&
             cartGameFiltered.length <= 0 &&
-            gameNumbers.map((item: any) =>
-              item.game.map((item: any, index: number) => (
-                <LatestGames key={index} color={item.color}>
-                  <GameNumber>{item.items.join(", ")}</GameNumber>
+            games.map(
+              (
+                { color, numbers, date_string, total_price, type }: any,
+                index: number
+              ) => {
+                <LatestGames key={index} color={color}>
+                  <GameNumber>{numbers}</GameNumber>
                   <section>
                     <GameInfo>
-                      {item.date} - (R${item.price.toFixed(2).replace(".", ",")}
-                      )
+                      {date_string} - (R$
+                      {total_price.toFixed(2).replace(".", ",")})
                     </GameInfo>
-                    <GameType color={item.color}>{item.type}</GameType>
+                    <GameType color={color}>{type}</GameType>
                   </section>
-                </LatestGames>
-              ))
+                </LatestGames>;
+              }
             )}
 
           {cartGameFiltered.length > 0 &&
-            cartGameFiltered.map((item: any) =>
-              item.map((itemFiltered: any, index: number) => (
-                <LatestGames key={index} color={itemFiltered.color}>
-                  <GameNumber>{itemFiltered.items.join(", ")}</GameNumber>
-                  <section>
-                    <GameInfo>
-                      {itemFiltered.date} - (R$
-                      {itemFiltered.price.toFixed(2).replace(".", ",")})
-                    </GameInfo>
-                    <GameType color={itemFiltered.color}>
-                      {itemFiltered.type}
-                    </GameType>
-                  </section>
-                </LatestGames>
-              ))
-            )}
+            cartGameFiltered.map(({ color, numbers, date_string, total_price, type }: any, index: number) => (
+              <LatestGames key={index} color={color}>
+                <GameNumber>{numbers}</GameNumber>
+                <section>
+                  <GameInfo>
+                    {date_string} - (R$
+                    {total_price.toFixed(2).replace(".", ",")})
+                  </GameInfo>
+                  <GameType color={color}>
+                    {type}
+                  </GameType>
+                </section>
+              </LatestGames>
+            ))}
         </LatestGamesContainer>
       </Container>
       <Footer />

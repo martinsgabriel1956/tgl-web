@@ -2,17 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type CartGame = {
   cartItem: {
+    game_id: number;
     id: string;
-    items: number[];
-    price: number;
+    numbers: number[] | string;
+    total_price: number;
     type: string;
     color: string;
-    date: string;
+    date_string: string;
   }[];
   totalPrice: number;
 };
 
 type ActionType = {
+  gameId: number;
   id: string;
   numbersGame: number[];
   price: number;
@@ -30,7 +32,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     receiveGame(state, action) {
-      const { numbersGame, price, type, color }: ActionType = action.payload;
+      const { numbersGame, price, type, color, gameId }: ActionType = action.payload;
       let { cartItem } = state;
 
       let id = Math.random().toString();
@@ -43,12 +45,13 @@ export const cartSlice = createSlice({
       const gamesCart = cartItem;
 
       gamesCart.push({
+        game_id: gameId,
         id,
-        items: numbersGame,
-        price,
+        numbers: numbersGame.toString(),
+        total_price: price,
         type,
         color,
-        date: dateFormatted,
+        date_string: dateFormatted,
       });
     },
     deleteGame(state, action) {

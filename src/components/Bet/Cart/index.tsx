@@ -26,9 +26,10 @@ import { gamesActions } from "../../../store/games";
 type RootState = {
   cart: {
     cartItem: {
+      game_id:number;
       id: string;
-      items: number[];
-      price: number;
+      numbers: number[] | string;
+      total_price: number;
       type: string;
       color: string;
     }[];
@@ -41,9 +42,10 @@ export function Cart() {
   const history = useHistory();
 
   let cartItem: {
+    game_id: number;
     id: string;
-    items: number[];
-    price: number;
+    numbers: number[] | string;
+    total_price: number;
     type: string;
     color: string;
   }[] = useSelector((state: RootState) => state.cart.cartItem);
@@ -88,19 +90,19 @@ export function Cart() {
 
         <GameContainer>
           {cartItem.length > 0 &&
-            cartItem.map(({ items, type, price, color, id }) => (
+            cartItem.map(({ game_id, id, numbers, type, total_price, color }) => (
               <Game key={id}>
                 <DeleteGameContainer color={color}>
-                  <DeleteGame onClick={() => deleteGame(id, price)}>
+                  <DeleteGame onClick={() => deleteGame(id, total_price)}>
                     <Trash />
                   </DeleteGame>
                 </DeleteGameContainer>
                 <section>
-                  <GameNumbers>{items.join(", ")}</GameNumbers>
+                  <GameNumbers>{numbers}</GameNumbers>
                   <div>
                     <GameType color={color}>{type}:</GameType>
                     <GamePrice>
-                      R${price.toFixed(2).replace(".", ",")}
+                      R${total_price.toFixed(2).replace(".", ",")}
                     </GamePrice>
                   </div>
                 </section>
