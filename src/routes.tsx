@@ -9,6 +9,7 @@ import { Register } from "./pages/Register";
 import { ResetPassword } from "./pages/ResetPassword";
 import { Recovery } from "./pages/Recovery";
 import { Profile } from "./pages/Profile";
+import { ErrorPage } from "./pages/ErrorPage";
 
 import { authActions } from "./store/auth";
 
@@ -47,33 +48,22 @@ export function Routes({ email, password }: LoginType) {
       <Switch>
         {isLoggedIn && (
           <>
-            <Route path="/" exact>
-              <Redirect to="/dashboard" />
-            </Route>
+            <Redirect to="/dashboard" />
+            <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/new_bet" component={NewBet} />
-            <Route path="/dashboard" component={Dashboard} />
             <Route path="/profile" component={Profile} />
           </>
         )}
-        
 
-        {location.pathname !== "/reset_password" &&
-        location.pathname !== "/login" &&
-        location.pathname !== "/register" &&
-        location.pathname !== "/recovery" &&
-        location.pathname !== "/" ? (
-          <Route path="/*">Conteudo indisponivel</Route>
-          ) : (
-            <>
-            <Route path="/" >
-              <Redirect to="/login" />
-            </Route>
-            <Route path="/login" component={Login} />
-            <Route path="/reset_password" component={ResetPassword} />
-            <Route path="/register" component={Register} />
-            <Route path="/recovery" component={Recovery} />
-          </>
-        )}
+        <Route path="/" exact>
+          <Redirect to="/login" />
+        </Route>
+
+        <Route path="/login" component={Login} />
+        <Route path="/reset_password" component={ResetPassword} />
+        <Route path="/register" component={Register} />
+        <Route path="/recovery" component={Recovery} />
+        <Route path="/*" component={ErrorPage}></Route>
       </Switch>
     </>
   );

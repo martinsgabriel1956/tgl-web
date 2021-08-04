@@ -23,15 +23,15 @@ type RootState = {
 };
 
 export function LoginForm() {
-  const [pwd, setPwd] = useState("");
-  const [isRevealPwd, setIsRevealPwd] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+  const [pwd, setPwd] = useState("");
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+
+  const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -44,10 +44,7 @@ export function LoginForm() {
     if (!isValid) toast.error("Preencha todos os campos!");
 
     dispatch(authActions.login({ email, password }));
-
-    if(isLoggedIn) {
-      history.push("/");
-    }
+    toast.success("Welcome back to TGL");
   }
 
   return (

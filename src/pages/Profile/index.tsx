@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProfileForm } from "../../components/Form/ProfileForm";
 import { Footer } from "../../components/UI/Footer";
 import { Header } from "../../components/UI/Header";
@@ -23,17 +23,18 @@ export function Profile() {
     setIsEditable(prev => !prev)
   }
 
-
-  api
-    .get("/user", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-    .then((res) => {
-      setName(res.data.name);
-      setEmail(res.data.email);
-    });
+  useEffect(() => {
+    api
+      .get("/user", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setName(res.data.name);
+        setEmail(res.data.email);
+      });
+  }, [])
 
     
   return (
