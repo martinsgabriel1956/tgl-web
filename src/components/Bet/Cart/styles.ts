@@ -3,10 +3,17 @@ import { FiTrash2, FiArrowRight, FiShoppingCart } from "react-icons/fi";
 
 export const Container = styled.form`
   margin-top: 2.5rem;
+  overflow-y: auto; 
+  overflow-x: hidden; 
+  max-width: 317px;
+  height: 300px;
 
-  width: 317px;
-  height: auto;
-  padding: 1.5rem 1.25rem 2rem;
+  section {
+    max-width: 230px;
+    overflow-wrap: break-word;
+  }
+  
+  padding: 1.5rem 1.25rem 1.75rem;
   border: 1px solid #e2e2e2;
   border-bottom: none;
   border-radius: 8px 8px 0 0;
