@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
 
 import { api } from "../../services/api";
 
@@ -17,6 +18,10 @@ import {
   GameNumber,
   GameType,
   GameInfo,
+  GamesPagination,
+  PreviousPage,
+  NextPage,
+  PageNumbers,
 } from "./styles";
 
 import { Header } from "../../components/UI/Header";
@@ -42,9 +47,19 @@ type RootState = {
 
 export function Dashboard() {
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [meta, setMeta] = useState({ current_page: 1, last_page: 1 });
   const [items, setItems] = useState([]);
   const [games, setGames] = useState([]);
   const [buttonActive, setButtonActive] = useState("");
+
+  function nextPage() {
+    if (meta.current_page !== meta.last_page) setPage((prev) => prev + 1);
+  }
+
+  function prevPage() {
+    if (page > 1) setPage((prev) => prev - 1);
+  }
 
   useEffect(() => {
     api.get("/games").then((res) => {
@@ -52,15 +67,16 @@ export function Dashboard() {
     });
 
     api
-      .get("/bets?page=1&listNumber=10", {
+      .get(`/bets?page=${page}&listNumber=5`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
+        setMeta(res.data.meta);
         setGames(res.data.data);
       });
-  }, [dispatch]);
+  }, [page]);
 
   const gameNumbers: {}[] = useSelector(
     (state: RootState) => state.games.cartItem
@@ -117,23 +133,20 @@ export function Dashboard() {
 
           {games &&
             cartGameFiltered.length <= 0 &&
-            games.map(
-              (
-                game: any,
-                index: number
-              ) => (
-                <LatestGames key={index} color={game.games.color}>
-                  <GameNumber>{game.numbers}</GameNumber>
-                  <section>
-                    <GameInfo>
-                      {game.date_string} - (R$
-                      {game.total_price.toFixed(2).replace(".", ",")})
-                    </GameInfo>
-                    <GameType color={game.games.color}>{game.games.type}</GameType>
-                  </section>
-                </LatestGames>
-              )
-            )}
+            games.map((game: any, index: number) => (
+              <LatestGames key={index} color={game.games.color}>
+                <GameNumber>{game.numbers}</GameNumber>
+                <section>
+                  <GameInfo>
+                    {game.date_string} - (R$
+                    {game.total_price.toFixed(2).replace(".", ",")})
+                  </GameInfo>
+                  <GameType color={game.games.color}>
+                    {game.games.type}
+                  </GameType>
+                </section>
+              </LatestGames>
+            ))}
 
           {cartGameFiltered.length > 0 &&
             cartGameFiltered.map((game: any, index: number) => (
@@ -150,6 +163,18 @@ export function Dashboard() {
                 </section>
               </LatestGames>
             ))}
+
+          <GamesPagination>
+            <PreviousPage onClick={() => prevPage()}>
+              <FiArrowLeft />
+            </PreviousPage>
+            <PageNumbers>
+              {meta.current_page} / {meta.last_page}
+            </PageNumbers>
+            <NextPage onClick={() => nextPage()}>
+              <FiArrowRight />
+            </NextPage>
+          </GamesPagination>
         </LatestGamesContainer>
       </Container>
       <Footer />

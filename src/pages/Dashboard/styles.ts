@@ -185,3 +185,35 @@ export const GameType = styled.div`
   color: ${props => props.color};
   font-weight: bold;
 `; 
+
+export const GamesPagination = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const PageNumbers = styled.span`
+  padding: .5rem 1rem;
+  border: 1px solid #868686;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  color: #B5C401;
+  font-weight: bold;
+`;
+
+export const PreviousPage = styled.button`
+  font-size: 2.5rem;
+  color: #B5C401;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+
+export const NextPage = styled.button`
+  font-size: 2.5rem;
+  color: #B5C401;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
