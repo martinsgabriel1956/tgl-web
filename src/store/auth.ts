@@ -48,7 +48,6 @@ export const authSlice = createSlice({
       }).catch(err => {
         toast.error('Tente entrar com email ou senha existente!!');
       })
-
       state.isLoggedIn = localStorage.getItem('token');
     },
     register(state, action) {

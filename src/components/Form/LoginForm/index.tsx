@@ -18,7 +18,7 @@ import { ButtonGreen } from "../../UI/ButtonGreen";
 
 type RootState = {
   auth: {
-    isLoggedIn: boolean;
+    isLoggedIn: string | null;
   };
 };
 
@@ -45,9 +45,8 @@ export function LoginForm() {
 
     dispatch(authActions.login({ email, password }));
 
-    if (isLoggedIn) {
-      toast.success("Logged!, You're so be ready to bet!!!");
-      history.push("/dashboard");
+    if(isLoggedIn) {
+      history.push("/");
     }
   }
 

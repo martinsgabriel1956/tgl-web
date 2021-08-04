@@ -41,7 +41,7 @@ export const gamesSlice = createSlice({
       const { gameType }: ActionType = action.payload;
       const gamesFiltered: {}[] = action.payload.games;
 
-      state.cartItemFiltered = gamesFiltered.filter( (gameSelected: any) => gameSelected.type === gameType)
+      state.cartItemFiltered = gamesFiltered.filter( (games: any) => games.games.type === gameType)
     },
   },
 });

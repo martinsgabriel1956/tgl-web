@@ -14,7 +14,7 @@ import { authActions } from "./store/auth";
 
 type RootState = {
   auth: {
-    isLoggedIn: boolean;
+    isLoggedIn: string | null;
   };
 };
 
@@ -50,29 +50,28 @@ export function Routes({ email, password }: LoginType) {
             <Route path="/" exact>
               <Redirect to="/dashboard" />
             </Route>
-            <Route path="/login" component={Login} />
-            <Route path="/reset_password" component={ResetPassword} />
             <Route path="/new_bet" component={NewBet} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/profile" component={Profile} />
           </>
         )}
         
-        <Route path="/recovery" component={Recovery} />
 
         {location.pathname !== "/reset_password" &&
         location.pathname !== "/login" &&
         location.pathname !== "/register" &&
+        location.pathname !== "/recovery" &&
         location.pathname !== "/" ? (
           <Route path="/*">Conteudo indisponivel</Route>
-        ) : (
-          <>
-            <Route path="/">
+          ) : (
+            <>
+            <Route path="/" >
               <Redirect to="/login" />
             </Route>
             <Route path="/login" component={Login} />
             <Route path="/reset_password" component={ResetPassword} />
             <Route path="/register" component={Register} />
+            <Route path="/recovery" component={Recovery} />
           </>
         )}
       </Switch>
