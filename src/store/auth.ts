@@ -52,8 +52,10 @@ export const authSlice = createSlice({
           window.location.href = 'http://localhost:3000/dashboard';
       }, 2000)
       }).catch(err => {
-        toast.error('Tente entrar com email ou senha existente!!');
+        toast.error('Try to login with email or password existent!!');
+        return err;
       })
+      
       state.isLoggedIn = localStorage.getItem('token');
     },
     register(state, action) {

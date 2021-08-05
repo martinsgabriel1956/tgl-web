@@ -96,21 +96,24 @@ export const NewBet = styled(Link)`
 
 export const LatestGamesContainer = styled.div`
   padding: 2rem 7rem;
-  
-  @media (max-width: 767px) {
-    padding: 2.75rem 4rem;
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    padding: 2.75rem 2rem;
   }
-  `;
+
+`;
 
 export const LatestGames = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   padding-left: 1rem;
-
+  max-width: 230px;
+  overflow-wrap: break-word;
+  
   padding-bottom: 2rem;
   position: relative;
-
+  
   &:before {
     content: "";
     background: ${(props) => props.color};
@@ -119,10 +122,6 @@ export const LatestGames = styled.div`
     height: 90px;
     width: 6px;
     border-radius: 8px;
-
-    @media (max-width: 590px) {
-      height: calc(90px + 26px);
-    }
   }
 
   img {
@@ -155,17 +154,24 @@ export const LatestGames = styled.div`
       height: 325px;
     }
   }
-
-  @media (min-width: 320px) and (max-width: 374px) {
-    padding-left: 0.5rem;
-  }
-`;
+  `;
 
 export const GameNumber = styled.div`
   color: #868686;
   font-weight: bold;
   display: block;
   padding-bottom: 0.75rem;
+
+  @media (min-width: 320px) and (max-width: 349px) {
+    max-width: 250px;
+    overflow-wrap: break-word;
+
+  }
+  
+  @media (min-width: 350px) and (max-width: 420px) {
+    max-width: 300px;
+    overflow-wrap: break-word;
+  }
 `;
 
 export const GameInfo = styled.div`

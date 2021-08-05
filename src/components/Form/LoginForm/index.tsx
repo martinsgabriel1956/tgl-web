@@ -41,7 +41,7 @@ export function LoginForm() {
 
     const isValid = email && password;
 
-    if (!isValid) toast.error("Preencha todos os campos!");
+    if (!isValid) toast.error("Fill out all the fields");
 
     dispatch(authActions.login({ email, password }));
     

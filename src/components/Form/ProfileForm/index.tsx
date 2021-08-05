@@ -39,7 +39,7 @@ export function ProfileForm() {
         <input type="email" placeholder="email" ref={emailRef} />
       </Control>
       <Control>
-        <input type="password" placeholder="new password" ref={passwordRef} />
+        <input type="current-password" placeholder="new password" ref={passwordRef} />
       </Control>
       <SaveInfoButton>
         Save
