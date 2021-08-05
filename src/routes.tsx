@@ -48,7 +48,9 @@ export function Routes({ email, password }: LoginType) {
       <Switch>
         {isLoggedIn && (
           <>
-            <Redirect to="/dashboard" />
+            <Route path="/">
+              <Redirect  to="/dashboard" />
+            </Route>
             <Route path="/dashboard" exact component={Dashboard} />
             <Route path="/new_bet" component={NewBet} />
             <Route path="/profile" component={Profile} />
