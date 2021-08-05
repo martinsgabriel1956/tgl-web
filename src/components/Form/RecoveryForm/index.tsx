@@ -35,17 +35,16 @@ export function RecoveryForm() {
     const password = passwordRef.current?.value;
     const confirmPassword = confirmPasswordRef.current?.value;
 
+    const isEmpty = !token || !password || !confirmPassword;
+
+    if (isEmpty) {
+      toast.error("Fill out all the fields!");
+      return;
+    }
+
     dispatch(
       authActions.recoveryPassword({ token, password, confirmPassword })
     );
-
-    const isEmpty = !token || !password || !confirmPassword;
-
-    if (isEmpty) toast.error("Fill the empty fields!");
-
-    setTimeout(() => {
-      history.push("/login");
-    }, 2000);
   }
 
   return (

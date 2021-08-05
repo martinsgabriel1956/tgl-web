@@ -38,18 +38,14 @@ export function RegisterForm(props: RegisterFormProps) {
     const email = emailInputRef.current?.value;
     const password = passwordInputRef.current?.value;
 
-    dispatch(authActions.register({ name, email, password }));
-
     const emptyField = !name || !email || !password;
 
     if (emptyField) {
-      toast.error("Preencha todos os campos");
+      toast.error("Fill out all the fields");
       return;
     }
 
-    setTimeout(() => {
-      history.push("/login");
-    }, 2000);
+    dispatch(authActions.register({ name, email, password }));
   }
 
   return (

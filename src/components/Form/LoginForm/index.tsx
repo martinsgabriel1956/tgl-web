@@ -44,7 +44,6 @@ export function LoginForm() {
     if (!isValid) toast.error("Fill out all the fields");
 
     dispatch(authActions.login({ email, password }));
-    
   }
 
   return (

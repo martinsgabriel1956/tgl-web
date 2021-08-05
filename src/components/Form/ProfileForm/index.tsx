@@ -15,6 +15,13 @@ export function ProfileForm() {
     let email = emailRef.current?.value;
     let password = passwordRef.current?.value;
 
+    const isEmptyField = name || email || password;
+
+    if(!isEmptyField) {
+      toast.error('Fill at least one field below')
+      return;
+    }
+
     api.put(
       "/users",
       {
@@ -28,6 +35,10 @@ export function ProfileForm() {
         },
       },
     ).then(res => toast.success('Your Account has been updated'))
+
+    nameRef.current!.value = ''; 
+    emailRef.current!.value = ''; 
+    passwordRef.current!.value = '';
   }
 
   return (

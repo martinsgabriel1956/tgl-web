@@ -100,13 +100,15 @@ export const authSlice = createSlice({
         password,
         password_confirmation: confirmPassword,
       }).then(res => {
-        toast.success('Senha alterada com sucesso!');
+        toast.success('Reset Password Successfully!');
+        setTimeout(() => {
+          window.location.href = 'http://localhost:3000/login';
+      }, 2000)
       })
       .catch(err => {
-        toast.error('Senha ou Token não confere com as informações do usuário');
+        toast.error("Password or Token doesn't confer with the user info!!!");
+        return;
       })
-
-      
     }
   },
 });
