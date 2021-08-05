@@ -133,6 +133,15 @@ export const UserInfo = styled.div`
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0px 3px 25px #00000014;
+
+  @media (min-width: 320px) and (max-width: 348px) {
+    padding: 2rem .5rem;
+  }
+  
+  @media (min-width: 349px) and (max-width: 370px) {
+    padding: 2rem 1rem;
+
+  }
 `;
 
 export const EditInfoContainer = styled.div`
