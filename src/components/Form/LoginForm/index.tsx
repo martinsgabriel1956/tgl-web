@@ -57,7 +57,7 @@ export function LoginForm() {
         <Control>
           <ShowPasswordContainer>
             <input
-              type={isRevealPwd ? "text" : "current-password"}
+              type={isRevealPwd ? "text" : "password"}
               value={pwd}
               onChange={(e) => setPwd(e.target.value)}
               placeholder="Password"
