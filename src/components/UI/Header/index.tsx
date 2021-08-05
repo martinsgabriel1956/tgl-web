@@ -19,7 +19,7 @@ export function Header() {
   const location = useLocation();
 
   const logoutHandler = () => {
-    toast.success("Muito obrigado por apostar conosco 😊");
+    toast.success("Thanks for bet with us!!! See you latter");
     setTimeout(() => {
       dispatch(authActions.logout());
       history.push(`/login`);

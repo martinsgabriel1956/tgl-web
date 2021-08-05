@@ -36,8 +36,6 @@ export function RegisterForm(props: RegisterFormProps) {
       toast.error("Preencha todos os campos");
       return;
     }
-
-    toast.success("Usuário cadastrado!");
     
     setTimeout(() => {
       history.push("/login");

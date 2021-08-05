@@ -44,7 +44,7 @@ export function LoginForm() {
     if (!isValid) toast.error("Preencha todos os campos!");
 
     dispatch(authActions.login({ email, password }));
-    toast.success("Welcome back to TGL");
+    
   }
 
   return (

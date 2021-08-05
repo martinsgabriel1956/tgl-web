@@ -19,7 +19,7 @@ export function ResetPasswordForm() {
     const email = emailInputRef.current?.value;
 
     if (!email) {
-      toast.error("Entre com um email válido");
+      toast.error("Enter with a valid email!!");
       return;
     } else {
       dispatch(authActions.validateEmail({ email }));

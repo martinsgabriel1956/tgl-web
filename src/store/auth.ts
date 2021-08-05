@@ -45,6 +45,8 @@ export const authSlice = createSlice({
         password
       }).then(res => {
         localStorage.setItem('token', res.data.token);
+
+        toast.success("Welcome back to TGL");
         
         setTimeout(() => {
           window.location.href = 'http://localhost:3000/dashboard';
@@ -86,7 +88,7 @@ export const authSlice = createSlice({
         console.log(e);
         return;
       })
-      toast.success('Email enviado para o email cadastrado!');
+      toast.success('Email sent!');
     },
     recoveryPassword(state, action) {
       const { token, password, confirmPassword }: RecoveryProps = action.payload;
