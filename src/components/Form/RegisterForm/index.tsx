@@ -1,11 +1,7 @@
-import { ReactNode, useRef, FormEvent, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { useRegisterFormController } from "./useRegisterFormController";
 
 import { ButtonGreen } from "../../UI/ButtonGreen";
-
-import { authActions } from "../../../store/auth";
 
 import {
   Container,
@@ -16,37 +12,17 @@ import {
   EyeIconOff,
 } from "./styles";
 
-interface RegisterFormProps {
-  children?: ReactNode;
-}
-
-export function RegisterForm(props: RegisterFormProps) {
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const [pwd, setPwd] = useState("");
-  const [isRevealPwd, setIsRevealPwd] = useState(false);
-
-  const nameInputRef = useRef<HTMLInputElement>(null);
-  const emailInputRef = useRef<HTMLInputElement>(null);
-  const passwordInputRef = useRef<HTMLInputElement>(null);
-
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
-    const name = nameInputRef.current?.value;
-    const email = emailInputRef.current?.value;
-    const password = passwordInputRef.current?.value;
-
-    const emptyField = !name || !email || !password;
-
-    if (emptyField) {
-      toast.error("Fill out all the fields");
-      return;
-    }
-
-    dispatch(authActions.register({ name, email, password }));
-  }
+export function RegisterForm() {
+  const {
+    handleSubmit,
+    nameInputRef,
+    emailInputRef,
+    isRevealPwd,
+    pwd,
+    passwordInputRef,
+    handleChangePwd,
+    handleIsRevealPwd
+  } = useRegisterFormController();
 
   return (
     <>
@@ -63,7 +39,7 @@ export function RegisterForm(props: RegisterFormProps) {
             <input
               type={isRevealPwd ? "text" : "password"}
               value={pwd}
-              onChange={(e) => setPwd(e.target.value)}
+              onChange={handleChangePwd}
               placeholder="Password"
               ref={passwordInputRef}
             />
@@ -71,7 +47,7 @@ export function RegisterForm(props: RegisterFormProps) {
             {!isRevealPwd && <EyeIconOff />}
             <EyeIcon
               title={isRevealPwd ? "Hide password" : "Show password"}
-              onClick={() => setIsRevealPwd(!isRevealPwd)}
+              onClick={handleIsRevealPwd}
             />
           </ShowPasswordContainer>
         </Control>

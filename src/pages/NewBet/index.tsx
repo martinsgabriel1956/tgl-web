@@ -1,25 +1,19 @@
-import { Header } from "../../components/UI/Header";
-import { Footer } from "../../components/UI/Footer";
-import { GameContent } from "../../components/Bet/GameContent";
-import { Cart } from "../../components/Bet/Cart";
+import { Cart } from "./components/Cart";
+import { GameContent } from "./components/GameContent";
 
-import {
-  Container,
-} from "./styles";
+import { Container } from "./styles";
 
 export function NewBet() {
-  return (
-    <>
-      <Header />
-      <Container>
-        <section>
-          <GameContent />
-        </section>
-        <section>
-          <Cart />
-        </section>
-      </Container>
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Container>
+				<section>
+					<GameContent />
+				</section>
+				<section>
+					<Cart />
+				</section>
+			</Container>
+		</>
+	);
 }

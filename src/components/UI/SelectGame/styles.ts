@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.button`
   border: 3px solid ${(props) => props.border};
   border-radius: 20px;
-  background-color: ${props => props.background};
+  background-color: ${(props) => props.background};
   cursor: pointer;
   padding: .40rem 1.5rem;
   font-style: italic;
@@ -11,10 +11,16 @@ export const Container = styled.button`
   margin-right: 1.25rem;
   font-size: 12px;
   color: ${(props) => props.color};
+  transition: all 0.2s ease-in-out;
 
   &:disabled {
     cursor: no-drop;
     opacity: 0.5;
+  }
+
+  &:hover {
+    background-color: ${(props) => props.border};
+    color: #fff;
   }
 
   @media (max-width: 767px) {

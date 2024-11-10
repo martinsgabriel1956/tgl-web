@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const Container = styled.header`
   display: flex;
@@ -8,7 +8,7 @@ export const Container = styled.header`
   justify-content: space-between;
 
   border-bottom: 1px solid #ebebeb;
-  padding: 0.75rem 2rem 0.5rem;
+  padding: 0.75rem 6rem 0.5rem;
 
   a {
     color: #707070;
@@ -28,7 +28,6 @@ export const Container = styled.header`
 `;
 
 export const Logo = styled.nav`
-  padding-left: 6rem;
   margin-right: 4rem;
   color: #707070;
   font-size: 1.75rem;
@@ -41,9 +40,9 @@ export const Logo = styled.nav`
 
     background-color: #b5c401;
     top: 42px;
-    left: 78px;
+    left: -8px;
 
-    width: 60%;
+    width: 120%;
     height: 18%;
 
     border-radius: 2rem;
@@ -112,10 +111,9 @@ export const LogoutButton = styled.button`
   font-weight: 600;
   border: none;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: pointer;
   font-style: italic;
-  padding-right: 6rem;
 
   @media (max-width: 900px) {
     padding: 0;
