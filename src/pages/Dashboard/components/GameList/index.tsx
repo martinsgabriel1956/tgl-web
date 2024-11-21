@@ -48,6 +48,7 @@ export function GameList() {
 
 	const hasGameNumbers = games.length > 0 && cartGameFiltered.length <= 0;
 	const hasGame = items.length >= 0 && games.length >= 0;
+
 	return (
 		<>
 			<Loader isLoading={isLoading} />
@@ -60,9 +61,9 @@ export function GameList() {
 						</>
 					)}
 					<Games>
-						{items?.map((item: ItemTypes, index: number) => (
+						{items?.map((item: ItemTypes) => (
 							<SelectGame
-								key={index}
+								key={item.id}
 								background={
 									buttonActive === item.type ? item.color : "transparent"
 								}
